@@ -1,0 +1,435 @@
+Version 4.0 HI-TECH Software Intermediate Code
+"8 main.c
+[; ;main.c: 8: char status=STATUS_PAUSE, menu_opt=0;
+[c E31 0 1 2 3 4 .. ]
+[n E31 status STATUS_MENU STATUS_START STATUS_PLAYING STATUS_PAUSE STATUS_GAME_OVER  ]
+"5 ./lcd.h
+[; ;./lcd.h: 5:   void lcdString(char msg[]);
+[v _lcdString `(v ~T0 @X0 0 ef1`*uc ]
+"9 ./mixer.h
+[; ;./mixer.h: 9:     char* mixerGetSongName();
+[v _mixerGetSongName `(*uc ~T0 @X0 0 e? ]
+"8
+[; ;./mixer.h: 8:     char mixerGetOutput();
+[v _mixerGetOutput `(uc ~T0 @X0 0 e? ]
+"24 main.c
+[; ;main.c: 24:             if (mixerGetOutput() == MIXER_OUTPUT_SERIAL) {
+[c E19 0 1 .. ]
+[n E19 . MIXER_OUTPUT_SERIAL MIXER_OUTPUT_BUZZER  ]
+"3 ./lcd.h
+[; ;./lcd.h: 3:   void lcdCommand(char value);
+[v _lcdCommand `(v ~T0 @X0 0 ef1`uc ]
+"7
+[; ;./lcd.h: 7:   void lcdPosition(int line, int col);
+[v _lcdPosition `(v ~T0 @X0 0 ef2`i`i ]
+"4
+[; ;./lcd.h: 4:   void lcdChar(char value);
+[v _lcdChar `(v ~T0 @X0 0 ef1`uc ]
+"6 ./keypad.h
+[; ;./keypad.h: 6:  void kpDebounce(void);
+[v _kpDebounce `(v ~T0 @X0 0 ef ]
+"4
+[; ;./keypad.h: 4:     char kpReadKey(void);
+[v _kpReadKey `(uc ~T0 @X0 0 ef ]
+"5
+[; ;./keypad.h: 5:     char kpReadKeyDown();
+[v _kpReadKeyDown `(uc ~T0 @X0 0 e? ]
+"13 ./game.h
+[; ;./game.h: 13:     void newGame();
+[v _newGame `(v ~T0 @X0 0 e? ]
+"10 ./mixer.h
+[; ;./mixer.h: 10:     void mixerNextSong();
+[v _mixerNextSong `(v ~T0 @X0 0 e? ]
+"7
+[; ;./mixer.h: 7:     void mixerSetOutput(char out);
+[v _mixerSetOutput `(v ~T0 @X0 0 ef1`uc ]
+[p mainexit ]
+"12 ./game.h
+[; ;./game.h: 12:     void gameInit();
+[v _gameInit `(v ~T0 @X0 0 e? ]
+"15
+[; ;./game.h: 15:     char gameUpdate();
+[v _gameUpdate `(uc ~T0 @X0 0 e? ]
+"14
+[; ;./game.h: 14:     void gameStart();
+[v _gameStart `(v ~T0 @X0 0 e? ]
+"8 main.c
+[; ;main.c: 8: char status=STATUS_PAUSE, menu_opt=0;
+[v _status `uc ~T0 @X0 1 e ]
+[i _status
+-> . `E31 3 `uc
+]
+[v _menu_opt `uc ~T0 @X0 1 e ]
+[i _menu_opt
+-> -> 0 `i `uc
+]
+"10
+[; ;main.c: 10: void displayMenuOption(char opt) {
+[v _displayMenuOption `(v ~T0 @X0 1 ef1`uc ]
+{
+[e :U _displayMenuOption ]
+[v _opt `uc ~T0 @X0 1 r1 ]
+[f ]
+"11
+[; ;main.c: 11:     switch (opt) {
+[e $U 3  ]
+{
+"12
+[; ;main.c: 12:         case 0:
+[e :U 4 ]
+"13
+[; ;main.c: 13:             lcdString("Novo Jogo");
+[e ( _lcdString (1 :s 1C ]
+"14
+[; ;main.c: 14:             break;
+[e $U 2  ]
+"15
+[; ;main.c: 15:         case 1:
+[e :U 5 ]
+"16
+[; ;main.c: 16:             lcdString("Continuar Jogo");
+[e ( _lcdString (1 :s 2C ]
+"17
+[; ;main.c: 17:             break;
+[e $U 2  ]
+"18
+[; ;main.c: 18:         case 2:
+[e :U 6 ]
+"19
+[; ;main.c: 19:             lcdString("Mus: ");
+[e ( _lcdString (1 :s 3C ]
+"20
+[; ;main.c: 20:             lcdString(mixerGetSongName());
+[e ( _lcdString (1 ( _mixerGetSongName ..  ]
+"21
+[; ;main.c: 21:             break;
+[e $U 2  ]
+"22
+[; ;main.c: 22:         case 3:
+[e :U 7 ]
+"23
+[; ;main.c: 23:             lcdString("Som: ");
+[e ( _lcdString (1 :s 4C ]
+"24
+[; ;main.c: 24:             if (mixerGetOutput() == MIXER_OUTPUT_SERIAL) {
+[e $ ! == -> ( _mixerGetOutput ..  `i -> . `E19 0 `i 8  ]
+{
+"25
+[; ;main.c: 25:                 lcdString("serial");
+[e ( _lcdString (1 :s 5C ]
+"26
+[; ;main.c: 26:             } else {
+}
+[e $U 9  ]
+[e :U 8 ]
+{
+"27
+[; ;main.c: 27:                 lcdString("buzzer");
+[e ( _lcdString (1 :s 6C ]
+"28
+[; ;main.c: 28:             }
+}
+[e :U 9 ]
+"29
+[; ;main.c: 29:             break;
+[e $U 2  ]
+"30
+[; ;main.c: 30:     }
+}
+[e $U 2  ]
+[e :U 3 ]
+[e [\ -> _opt `i , $ -> 0 `i 4
+ , $ -> 1 `i 5
+ , $ -> 2 `i 6
+ , $ -> 3 `i 7
+ 2 ]
+[e :U 2 ]
+"31
+[; ;main.c: 31: }
+[e :UE 1 ]
+}
+"33
+[; ;main.c: 33: void displayMenu() {
+[v _displayMenu `(v ~T0 @X0 1 ef ]
+{
+[e :U _displayMenu ]
+[f ]
+"34
+[; ;main.c: 34:     lcdCommand(0x01);
+[e ( _lcdCommand (1 -> -> 1 `i `uc ]
+"35
+[; ;main.c: 35:     lcdPosition(0,0);
+[e ( _lcdPosition (2 , -> 0 `i -> 0 `i ]
+"36
+[; ;main.c: 36:     lcdChar('>');
+[e ( _lcdChar (1 -> -> 62 `ui `uc ]
+"37
+[; ;main.c: 37:     displayMenuOption(menu_opt);
+[e ( _displayMenuOption (1 _menu_opt ]
+"38
+[; ;main.c: 38:     lcdPosition(1, 0);
+[e ( _lcdPosition (2 , -> 1 `i -> 0 `i ]
+"39
+[; ;main.c: 39:     displayMenuOption((menu_opt + 1)%4);
+[e ( _displayMenuOption (1 -> % + -> _menu_opt `i -> 1 `i -> 4 `i `uc ]
+"40
+[; ;main.c: 40: }
+[e :UE 10 ]
+}
+"42
+[; ;main.c: 42: char menuUpdate() {
+[v _menuUpdate `(uc ~T0 @X0 1 ef ]
+{
+[e :U _menuUpdate ]
+[f ]
+"43
+[; ;main.c: 43:     char key;
+[v _key `uc ~T0 @X0 1 a ]
+"45
+[; ;main.c: 45:     kpDebounce();
+[e ( _kpDebounce ..  ]
+"46
+[; ;main.c: 46:     if (kpReadKey() != key) {
+[e $ ! != -> ( _kpReadKey ..  `i -> _key `i 12  ]
+{
+"47
+[; ;main.c: 47:         key = kpReadKeyDown();
+[e = _key ( _kpReadKeyDown ..  ]
+"49
+[; ;main.c: 49:         switch (key) {
+[e $U 14  ]
+{
+"50
+[; ;main.c: 50:             case 'D':
+[e :U 15 ]
+"51
+[; ;main.c: 51:                 menu_opt++;
+[e ++ _menu_opt -> -> 1 `i `uc ]
+"52
+[; ;main.c: 52:                 menu_opt %= 4;
+[e =% _menu_opt -> 4 `i ]
+"53
+[; ;main.c: 53:                 displayMenu(menu_opt);
+[e ( _displayMenu -> _menu_opt `i ]
+"54
+[; ;main.c: 54:                 break;
+[e $U 13  ]
+"55
+[; ;main.c: 55:             case 'U':
+[e :U 16 ]
+"56
+[; ;main.c: 56:                 menu_opt--;
+[e -- _menu_opt -> -> 1 `i `uc ]
+"57
+[; ;main.c: 57:                 menu_opt += 4;
+[e =+ _menu_opt -> -> 4 `i `uc ]
+"58
+[; ;main.c: 58:                 menu_opt %= 4;
+[e =% _menu_opt -> 4 `i ]
+"59
+[; ;main.c: 59:                 displayMenu(menu_opt);
+[e ( _displayMenu -> _menu_opt `i ]
+"60
+[; ;main.c: 60:                 break;
+[e $U 13  ]
+"61
+[; ;main.c: 61:             case 'S':
+[e :U 17 ]
+"62
+[; ;main.c: 62:                 switch (menu_opt) {
+[e $U 19  ]
+{
+"63
+[; ;main.c: 63:                     case 0:
+[e :U 20 ]
+"64
+[; ;main.c: 64:                         newGame();
+[e ( _newGame ..  ]
+"65
+[; ;main.c: 65:                         return STATUS_START;
+[e ) -> . `E31 1 `uc ]
+[e $UE 11  ]
+"66
+[; ;main.c: 66:                     case 1:
+[e :U 21 ]
+"67
+[; ;main.c: 67:                         return STATUS_START;
+[e ) -> . `E31 1 `uc ]
+[e $UE 11  ]
+"68
+[; ;main.c: 68:                     case 2:
+[e :U 22 ]
+"69
+[; ;main.c: 69:                         mixerNextSong();
+[e ( _mixerNextSong ..  ]
+"70
+[; ;main.c: 70:                         displayMenu(menu_opt);
+[e ( _displayMenu -> _menu_opt `i ]
+"71
+[; ;main.c: 71:                         return STATUS_MENU;
+[e ) -> . `E31 0 `uc ]
+[e $UE 11  ]
+"72
+[; ;main.c: 72:                     case 3:
+[e :U 23 ]
+"73
+[; ;main.c: 73:                         if (mixerGetOutput() == MIXER_OUTPUT_SERIAL) {
+[e $ ! == -> ( _mixerGetOutput ..  `i -> . `E19 0 `i 24  ]
+{
+"74
+[; ;main.c: 74:                             mixerSetOutput(MIXER_OUTPUT_BUZZER);
+[e ( _mixerSetOutput (1 -> . `E19 1 `uc ]
+"75
+[; ;main.c: 75:                         } else {
+}
+[e $U 25  ]
+[e :U 24 ]
+{
+"76
+[; ;main.c: 76:                             mixerSetOutput(MIXER_OUTPUT_SERIAL);
+[e ( _mixerSetOutput (1 -> . `E19 0 `uc ]
+"77
+[; ;main.c: 77:                         }
+}
+[e :U 25 ]
+"78
+[; ;main.c: 78:                         displayMenu(menu_opt);
+[e ( _displayMenu -> _menu_opt `i ]
+"79
+[; ;main.c: 79:                         return STATUS_MENU;
+[e ) -> . `E31 0 `uc ]
+[e $UE 11  ]
+"80
+[; ;main.c: 80:                 }
+}
+[e $U 18  ]
+[e :U 19 ]
+[e [\ -> _menu_opt `i , $ -> 0 `i 20
+ , $ -> 1 `i 21
+ , $ -> 2 `i 22
+ , $ -> 3 `i 23
+ 18 ]
+[e :U 18 ]
+"81
+[; ;main.c: 81:                 break;
+[e $U 13  ]
+"82
+[; ;main.c: 82:         }
+}
+[e $U 13  ]
+[e :U 14 ]
+[e [\ -> _key `i , $ -> -> 68 `ui `i 15
+ , $ -> -> 85 `ui `i 16
+ , $ -> -> 83 `ui `i 17
+ 13 ]
+[e :U 13 ]
+"83
+[; ;main.c: 83:     }
+}
+[e :U 12 ]
+"85
+[; ;main.c: 85:     return STATUS_MENU;
+[e ) -> . `E31 0 `uc ]
+[e $UE 11  ]
+"86
+[; ;main.c: 86: }
+[e :UE 11 ]
+}
+[v $root$_main `(v ~T0 @X0 0 e ]
+"88
+[; ;main.c: 88: void main() {
+[v _main `(v ~T0 @X0 1 ef ]
+{
+[e :U _main ]
+[f ]
+"89
+[; ;main.c: 89:     gameInit();
+[e ( _gameInit ..  ]
+"91
+[; ;main.c: 91:     for (;;) {
+{
+[e :U 27 ]
+{
+"92
+[; ;main.c: 92:         if (status == STATUS_MENU) {
+[e $ ! == -> _status `i -> . `E31 0 `i 30  ]
+{
+"93
+[; ;main.c: 93:             status = menuUpdate();
+[e = _status ( _menuUpdate ..  ]
+"94
+[; ;main.c: 94:         } else if (status == STATUS_PLAYING) {
+}
+[e $U 31  ]
+[e :U 30 ]
+[e $ ! == -> _status `i -> . `E31 2 `i 32  ]
+{
+"95
+[; ;main.c: 95:             status = gameUpdate();
+[e = _status ( _gameUpdate ..  ]
+"96
+[; ;main.c: 96:         } else if (status == STATUS_START) {
+}
+[e $U 33  ]
+[e :U 32 ]
+[e $ ! == -> _status `i -> . `E31 1 `i 34  ]
+{
+"97
+[; ;main.c: 97:             gameStart();
+[e ( _gameStart ..  ]
+"98
+[; ;main.c: 98:             status = STATUS_PLAYING;
+[e = _status -> . `E31 2 `uc ]
+"99
+[; ;main.c: 99:         } else if (status == STATUS_PAUSE) {
+}
+[e $U 35  ]
+[e :U 34 ]
+[e $ ! == -> _status `i -> . `E31 3 `i 36  ]
+{
+"100
+[; ;main.c: 100:             displayMenu(0);
+[e ( _displayMenu -> 0 `i ]
+"101
+[; ;main.c: 101:             status = STATUS_MENU;
+[e = _status -> . `E31 0 `uc ]
+"102
+[; ;main.c: 102:         } else if (status == STATUS_GAME_OVER) {
+}
+[e $U 37  ]
+[e :U 36 ]
+[e $ ! == -> _status `i -> . `E31 4 `i 38  ]
+{
+"103
+[; ;main.c: 103:             newGame();
+[e ( _newGame ..  ]
+"104
+[; ;main.c: 104:             displayMenu(0);
+[e ( _displayMenu -> 0 `i ]
+"105
+[; ;main.c: 105:             status = STATUS_MENU;
+[e = _status -> . `E31 0 `uc ]
+"106
+[; ;main.c: 106:         }
+}
+[e :U 38 ]
+[e :U 37 ]
+[e :U 35 ]
+[e :U 33 ]
+[e :U 31 ]
+"107
+[; ;main.c: 107:     }
+}
+[e $U 27  ]
+[e :U 28 ]
+}
+"108
+[; ;main.c: 108: }
+[e :UE 26 ]
+}
+[a 6C 98 117 122 122 101 114 0 ]
+[a 2C 67 111 110 116 105 110 117 97 114 32 74 111 103 111 0 ]
+[a 1C 78 111 118 111 32 74 111 103 111 0 ]
+[a 5C 115 101 114 105 97 108 0 ]
+[a 3C 77 117 115 58 32 0 ]
+[a 4C 83 111 109 58 32 0 ]

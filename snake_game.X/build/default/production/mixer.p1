@@ -1,0 +1,375 @@
+Version 4.0 HI-TECH Software Intermediate Code
+"4 ./songs.h
+[; ;./songs.h: 4:     typedef struct {
+[s S1 `uc -> 15 `i `*uc 1 `*uc 1 `*uc 1 ]
+[n S1 . name size notes duration ]
+"13 mixer.c
+[; ;mixer.c: 13: char mixer_output = MIXER_OUTPUT_SERIAL;
+[c E2 0 1 .. ]
+[n E2 . MIXER_OUTPUT_SERIAL MIXER_OUTPUT_BUZZER  ]
+"25 ./serial.h
+[; ;./serial.h: 25:  void serialInit(void);
+[v _serialInit `(v ~T0 @X0 0 ef ]
+"25 ./pwm.h
+[; ;./pwm.h: 25:  void pwmInit(void);
+[v _pwmInit `(v ~T0 @X0 0 ef ]
+"23 ./serial.h
+[; ;./serial.h: 23:  void serialSend(unsigned char c);
+[v _serialSend `(v ~T0 @X0 0 ef1`uc ]
+"24 ./pwm.h
+[; ;./pwm.h: 24:  void pwmFrequency(unsigned int freq);
+[v _pwmFrequency `(v ~T0 @X0 0 ef1`ui ]
+"23
+[; ;./pwm.h: 23:  void pwmSet(unsigned char porcento);
+[v _pwmSet `(v ~T0 @X0 0 ef1`uc ]
+"11 ./songs.h
+[; ;./songs.h: 11:     const unsigned int notes_freq[30];
+[v _notes_freq `Cui ~T0 @X0 -> 30 `i e ]
+[i _notes_freq
+:U ..
+-> -> 0 `i `Cui
+-> -> 0 `i `Cui
+-> -> 0 `i `Cui
+-> -> 0 `i `Cui
+-> -> 0 `i `Cui
+-> -> 0 `i `Cui
+-> -> 0 `i `Cui
+-> -> 0 `i `Cui
+-> -> 0 `i `Cui
+-> -> 0 `i `Cui
+-> -> 0 `i `Cui
+-> -> 0 `i `Cui
+-> -> 0 `i `Cui
+-> -> 0 `i `Cui
+-> -> 0 `i `Cui
+-> -> 0 `i `Cui
+-> -> 0 `i `Cui
+-> -> 0 `i `Cui
+-> -> 0 `i `Cui
+-> -> 0 `i `Cui
+-> -> 0 `i `Cui
+-> -> 0 `i `Cui
+-> -> 0 `i `Cui
+-> -> 0 `i `Cui
+-> -> 0 `i `Cui
+-> -> 0 `i `Cui
+-> -> 0 `i `Cui
+-> -> 0 `i `Cui
+-> -> 0 `i `Cui
+-> -> 0 `i `Cui
+..
+]
+"13
+[; ;./songs.h: 13:     Song pacman_song;
+[v _pacman_song `S1 ~T0 @X0 1 e ]
+"14
+[; ;./songs.h: 14:     Song tetris_song;
+[v _tetris_song `S1 ~T0 @X0 1 e ]
+"15
+[; ;./songs.h: 15:     Song sw_song;
+[v _sw_song `S1 ~T0 @X0 1 e ]
+"8 mixer.c
+[; ;mixer.c: 8: unsigned char current_note=0, note_time=0, pause_time=0, playing_note=0;
+[v _current_note `uc ~T0 @X0 1 e ]
+[i _current_note
+-> -> 0 `i `uc
+]
+[v _note_time `uc ~T0 @X0 1 e ]
+[i _note_time
+-> -> 0 `i `uc
+]
+[v _pause_time `uc ~T0 @X0 1 e ]
+[i _pause_time
+-> -> 0 `i `uc
+]
+[v _playing_note `uc ~T0 @X0 1 e ]
+[i _playing_note
+-> -> 0 `i `uc
+]
+"10
+[; ;mixer.c: 10: Song song;
+[v _song `S1 ~T0 @X0 1 e ]
+"11
+[; ;mixer.c: 11: Song playlist[3];
+[v _playlist `S1 ~T0 @X0 -> 3 `i e ]
+"12
+[; ;mixer.c: 12: char song_idx=0;
+[v _song_idx `uc ~T0 @X0 1 e ]
+[i _song_idx
+-> -> 0 `i `uc
+]
+"13
+[; ;mixer.c: 13: char mixer_output = MIXER_OUTPUT_SERIAL;
+[v _mixer_output `uc ~T0 @X0 1 e ]
+[i _mixer_output
+-> . `E2 0 `uc
+]
+"15
+[; ;mixer.c: 15: void mixerInit(void) {
+[v _mixerInit `(v ~T0 @X0 1 ef ]
+{
+[e :U _mixerInit ]
+[f ]
+"16
+[; ;mixer.c: 16:     serialInit();
+[e ( _serialInit ..  ]
+"17
+[; ;mixer.c: 17:     pwmInit();
+[e ( _pwmInit ..  ]
+"19
+[; ;mixer.c: 19:     playlist[0] = pacman_song;
+[e = *U + &U _playlist * -> -> -> 0 `i `ui `ux -> -> # *U &U _playlist `ui `ux _pacman_song ]
+"20
+[; ;mixer.c: 20:     playlist[1] = tetris_song;
+[e = *U + &U _playlist * -> -> -> 1 `i `ui `ux -> -> # *U &U _playlist `ui `ux _tetris_song ]
+"21
+[; ;mixer.c: 21:     playlist[2] = sw_song;
+[e = *U + &U _playlist * -> -> -> 2 `i `ui `ux -> -> # *U &U _playlist `ui `ux _sw_song ]
+"23
+[; ;mixer.c: 23:     song = playlist[song_idx];
+[e = _song *U + &U _playlist * -> _song_idx `ux -> -> # *U &U _playlist `ui `ux ]
+"24
+[; ;mixer.c: 24: }
+[e :UE 2 ]
+}
+"26
+[; ;mixer.c: 26: void mixerRestart() {
+[v _mixerRestart `(v ~T0 @X0 1 ef ]
+{
+[e :U _mixerRestart ]
+[f ]
+"27
+[; ;mixer.c: 27:     current_note = 0;
+[e = _current_note -> -> 0 `i `uc ]
+"28
+[; ;mixer.c: 28:     note_time=0;
+[e = _note_time -> -> 0 `i `uc ]
+"29
+[; ;mixer.c: 29:     pause_time=0;
+[e = _pause_time -> -> 0 `i `uc ]
+"30
+[; ;mixer.c: 30:     playing_note=0;
+[e = _playing_note -> -> 0 `i `uc ]
+"31
+[; ;mixer.c: 31: }
+[e :UE 3 ]
+}
+"33
+[; ;mixer.c: 33: void mixerSetOutput(char out) {
+[v _mixerSetOutput `(v ~T0 @X0 1 ef1`uc ]
+{
+[e :U _mixerSetOutput ]
+[v _out `uc ~T0 @X0 1 r1 ]
+[f ]
+"34
+[; ;mixer.c: 34:     mixer_output = out;
+[e = _mixer_output _out ]
+"35
+[; ;mixer.c: 35: }
+[e :UE 4 ]
+}
+"37
+[; ;mixer.c: 37: char mixerGetOutput() {
+[v _mixerGetOutput `(uc ~T0 @X0 1 ef ]
+{
+[e :U _mixerGetOutput ]
+[f ]
+"38
+[; ;mixer.c: 38:     return mixer_output;
+[e ) _mixer_output ]
+[e $UE 5  ]
+"39
+[; ;mixer.c: 39: }
+[e :UE 5 ]
+}
+"41
+[; ;mixer.c: 41: void startNote(char note) {
+[v _startNote `(v ~T0 @X0 1 ef1`uc ]
+{
+[e :U _startNote ]
+[v _note `uc ~T0 @X0 1 r1 ]
+[f ]
+"42
+[; ;mixer.c: 42:     if (mixer_output == MIXER_OUTPUT_SERIAL) {
+[e $ ! == -> _mixer_output `i -> . `E2 0 `i 7  ]
+{
+"43
+[; ;mixer.c: 43:         serialSend(note + '0');
+[e ( _serialSend (1 -> + -> _note `ui -> 48 `ui `uc ]
+"44
+[; ;mixer.c: 44:     } else {
+}
+[e $U 8  ]
+[e :U 7 ]
+{
+"45
+[; ;mixer.c: 45:         pwmFrequency(notes_freq[note]);
+[e ( _pwmFrequency (1 *U + &U _notes_freq * -> _note `ux -> -> # *U &U _notes_freq `ui `ux ]
+"46
+[; ;mixer.c: 46:         pwmSet(50);
+[e ( _pwmSet (1 -> -> 50 `i `uc ]
+"47
+[; ;mixer.c: 47:     }
+}
+[e :U 8 ]
+"48
+[; ;mixer.c: 48: }
+[e :UE 6 ]
+}
+"50
+[; ;mixer.c: 50: void stopNote() {
+[v _stopNote `(v ~T0 @X0 1 ef ]
+{
+[e :U _stopNote ]
+[f ]
+"51
+[; ;mixer.c: 51:     if (mixer_output == MIXER_OUTPUT_SERIAL) {
+[e $ ! == -> _mixer_output `i -> . `E2 0 `i 10  ]
+{
+"52
+[; ;mixer.c: 52:         serialSend('0'-2);
+[e ( _serialSend (1 -> - -> 48 `ui -> -> 2 `i `ui `uc ]
+"53
+[; ;mixer.c: 53:     } else {
+}
+[e $U 11  ]
+[e :U 10 ]
+{
+"54
+[; ;mixer.c: 54:         pwmFrequency(100000);
+[e ( _pwmFrequency (1 -> -> 100000 `l `ui ]
+"55
+[; ;mixer.c: 55:     }
+}
+[e :U 11 ]
+"56
+[; ;mixer.c: 56: }
+[e :UE 9 ]
+}
+"58
+[; ;mixer.c: 58: void mixerStop() {
+[v _mixerStop `(v ~T0 @X0 1 ef ]
+{
+[e :U _mixerStop ]
+[f ]
+"59
+[; ;mixer.c: 59:     stopNote();
+[e ( _stopNote ..  ]
+"60
+[; ;mixer.c: 60: }
+[e :UE 12 ]
+}
+"62
+[; ;mixer.c: 62: void mixerUpdate() {
+[v _mixerUpdate `(v ~T0 @X0 1 ef ]
+{
+[e :U _mixerUpdate ]
+[f ]
+"63
+[; ;mixer.c: 63:     if (note_time > 0) {
+[e $ ! > -> _note_time `i -> 0 `i 14  ]
+{
+"64
+[; ;mixer.c: 64:         note_time--;
+[e -- _note_time -> -> 1 `i `uc ]
+"65
+[; ;mixer.c: 65:     }
+}
+[e $U 15  ]
+"66
+[; ;mixer.c: 66:     else if (playing_note) {
+[e :U 14 ]
+[e $ ! != -> _playing_note `i -> 0 `i 16  ]
+{
+"67
+[; ;mixer.c: 67:         playing_note = 0;
+[e = _playing_note -> -> 0 `i `uc ]
+"68
+[; ;mixer.c: 68:         stopNote();
+[e ( _stopNote ..  ]
+"69
+[; ;mixer.c: 69:     }
+}
+[e $U 17  ]
+"70
+[; ;mixer.c: 70:     else if (pause_time > 0) {
+[e :U 16 ]
+[e $ ! > -> _pause_time `i -> 0 `i 18  ]
+{
+"71
+[; ;mixer.c: 71:         pause_time--;
+[e -- _pause_time -> -> 1 `i `uc ]
+"72
+[; ;mixer.c: 72:     }
+}
+[e $U 19  ]
+"73
+[; ;mixer.c: 73:     else {
+[e :U 18 ]
+{
+"74
+[; ;mixer.c: 74:         if (current_note == *song.size) {
+[e $ ! == -> _current_note `i -> *U . _song 1 `i 20  ]
+{
+"75
+[; ;mixer.c: 75:             current_note = 0;
+[e = _current_note -> -> 0 `i `uc ]
+"76
+[; ;mixer.c: 76:         }
+}
+[e :U 20 ]
+"77
+[; ;mixer.c: 77:         startNote(song.notes[current_note]);
+[e ( _startNote (1 -> *U + . _song 2 * -> _current_note `ux -> -> # *U . _song 2 `ui `ux `uc ]
+"78
+[; ;mixer.c: 78:         note_time = song.duration[current_note];
+[e = _note_time *U + . _song 3 * -> _current_note `ux -> -> # *U . _song 3 `ui `ux ]
+"79
+[; ;mixer.c: 79:         playing_note = 1;
+[e = _playing_note -> -> 1 `i `uc ]
+"81
+[; ;mixer.c: 81:         pause_time = song.duration[current_note] >> 3;
+[e = _pause_time -> >> -> *U + . _song 3 * -> _current_note `ux -> -> # *U . _song 3 `ui `ux `i -> 3 `i `uc ]
+"83
+[; ;mixer.c: 83:         current_note++;
+[e ++ _current_note -> -> 1 `i `uc ]
+"84
+[; ;mixer.c: 84:     }
+}
+[e :U 19 ]
+[e :U 17 ]
+[e :U 15 ]
+"85
+[; ;mixer.c: 85: }
+[e :UE 13 ]
+}
+"87
+[; ;mixer.c: 87: void mixerNextSong() {
+[v _mixerNextSong `(v ~T0 @X0 1 ef ]
+{
+[e :U _mixerNextSong ]
+[f ]
+"88
+[; ;mixer.c: 88:     song_idx = (song_idx + 1)%3;
+[e = _song_idx -> % + -> _song_idx `i -> 1 `i -> 3 `i `uc ]
+"89
+[; ;mixer.c: 89:     song = playlist[song_idx];
+[e = _song *U + &U _playlist * -> _song_idx `ux -> -> # *U &U _playlist `ui `ux ]
+"90
+[; ;mixer.c: 90: }
+[e :UE 21 ]
+}
+"92
+[; ;mixer.c: 92: char* mixerGetSongName() {
+[v _mixerGetSongName `(*uc ~T0 @X0 1 ef ]
+{
+[e :U _mixerGetSongName ]
+[f ]
+"93
+[; ;mixer.c: 93:     return song.name;
+[e ) -> &U . _song 0 `*uc ]
+[e $UE 22  ]
+"94
+[; ;mixer.c: 94: }
+[e :UE 22 ]
+}

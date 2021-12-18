@@ -1,0 +1,258 @@
+Version 4.0 HI-TECH Software Intermediate Code
+"3 ./lcd.h
+[; ;./lcd.h: 3:   void lcdCommand(char value);
+[v _lcdCommand `(v ~T0 @X0 0 ef1`uc ]
+"4
+[; ;./lcd.h: 4:   void lcdChar(char value);
+[v _lcdChar `(v ~T0 @X0 0 ef1`uc ]
+"7
+[; ;./lcd.h: 7:   void lcdPosition(int line, int col);
+[v _lcdPosition `(v ~T0 @X0 0 ef2`i`i ]
+"8
+[; ;./lcd.h: 8:   void lcdInit(void);
+[v _lcdInit `(v ~T0 @X0 0 ef ]
+"5
+[; ;./lcd.h: 5:   void lcdString(char msg[]);
+[v _lcdString `(v ~T0 @X0 0 ef1`*uc ]
+"5 renderer.c
+[; ;renderer.c: 5: unsigned char screen[(2*8)*3] = {0};
+[v _screen `uc ~T0 @X0 -> 48 `i e ]
+[i _screen
+:U ..
+-> -> 0 `i `uc
+..
+]
+"7
+[; ;renderer.c: 7: void setPixel(unsigned char x, unsigned char y, unsigned char val) {
+[v _setPixel `(v ~T0 @X0 1 ef3`uc`uc`uc ]
+{
+[e :U _setPixel ]
+[v _x `uc ~T0 @X0 1 r1 ]
+[v _y `uc ~T0 @X0 1 r2 ]
+[v _val `uc ~T0 @X0 1 r3 ]
+[f ]
+"8
+[; ;renderer.c: 8:     int i = 0;
+[v _i `i ~T0 @X0 1 a ]
+[e = _i -> 0 `i ]
+"9
+[; ;renderer.c: 9:     unsigned char x_ = x;
+[v _x_ `uc ~T0 @X0 1 a ]
+[e = _x_ _x ]
+"11
+[; ;renderer.c: 11:     if (x > 9) {
+[e $ ! > -> _x `i -> 9 `i 2  ]
+{
+"12
+[; ;renderer.c: 12:         i += 32;
+[e =+ _i -> 32 `i ]
+"13
+[; ;renderer.c: 13:         x_ = x - 10;
+[e = _x_ -> - -> _x `i -> 10 `i `uc ]
+"14
+[; ;renderer.c: 14:     }
+}
+[e $U 3  ]
+"15
+[; ;renderer.c: 15:     else if (x > 4) {
+[e :U 2 ]
+[e $ ! > -> _x `i -> 4 `i 4  ]
+{
+"16
+[; ;renderer.c: 16:         i += 16;
+[e =+ _i -> 16 `i ]
+"17
+[; ;renderer.c: 17:         x_ = x - 5;
+[e = _x_ -> - -> _x `i -> 5 `i `uc ]
+"18
+[; ;renderer.c: 18:     }
+}
+[e :U 4 ]
+[e :U 3 ]
+"19
+[; ;renderer.c: 19:     i += y;
+[e =+ _i -> _y `i ]
+"20
+[; ;renderer.c: 20:     if (val) {
+[e $ ! != -> _val `i -> 0 `i 5  ]
+{
+"21
+[; ;renderer.c: 21:         ((screen[i]) |= (1<<(4 - x_)));
+[e =| *U + &U _screen * -> -> _i `ui `ux -> -> # *U &U _screen `ui `ux -> << -> 1 `i - -> 4 `i -> _x_ `i `uc ]
+"22
+[; ;renderer.c: 22:     }
+}
+[e $U 6  ]
+"23
+[; ;renderer.c: 23:     else {
+[e :U 5 ]
+{
+"24
+[; ;renderer.c: 24:         ((screen[i]) &= ~(1<<(4 - x_)));
+[e =& *U + &U _screen * -> -> _i `ui `ux -> -> # *U &U _screen `ui `ux -> ~ << -> 1 `i - -> 4 `i -> _x_ `i `uc ]
+"25
+[; ;renderer.c: 25:     }
+}
+[e :U 6 ]
+"27
+[; ;renderer.c: 27:     lcdCommand(0x40 + i);
+[e ( _lcdCommand (1 -> + -> 64 `i _i `uc ]
+"28
+[; ;renderer.c: 28:     lcdChar(screen[i]);
+[e ( _lcdChar (1 -> *U + &U _screen * -> -> _i `ui `ux -> -> # *U &U _screen `ui `ux `uc ]
+"29
+[; ;renderer.c: 29: }
+[e :UE 1 ]
+}
+"31
+[; ;renderer.c: 31: void displayScreen() {
+[v _displayScreen `(v ~T0 @X0 1 ef ]
+{
+[e :U _displayScreen ]
+[f ]
+"32
+[; ;renderer.c: 32:     lcdCommand(0x01);
+[e ( _lcdCommand (1 -> -> 1 `i `uc ]
+"33
+[; ;renderer.c: 33:     lcdPosition(0, 0);
+[e ( _lcdPosition (2 , -> 0 `i -> 0 `i ]
+"34
+[; ;renderer.c: 34:     lcdChar(0);
+[e ( _lcdChar (1 -> -> 0 `i `uc ]
+"35
+[; ;renderer.c: 35:     lcdChar(2);
+[e ( _lcdChar (1 -> -> 2 `i `uc ]
+"36
+[; ;renderer.c: 36:     lcdChar(4);
+[e ( _lcdChar (1 -> -> 4 `i `uc ]
+"37
+[; ;renderer.c: 37:     lcdPosition(1, 0);
+[e ( _lcdPosition (2 , -> 1 `i -> 0 `i ]
+"38
+[; ;renderer.c: 38:     lcdChar(1);
+[e ( _lcdChar (1 -> -> 1 `i `uc ]
+"39
+[; ;renderer.c: 39:     lcdChar(3);
+[e ( _lcdChar (1 -> -> 3 `i `uc ]
+"40
+[; ;renderer.c: 40:     lcdChar(5);
+[e ( _lcdChar (1 -> -> 5 `i `uc ]
+"41
+[; ;renderer.c: 41: }
+[e :UE 7 ]
+}
+"43
+[; ;renderer.c: 43: void cleanScreean() {
+[v _cleanScreean `(v ~T0 @X0 1 ef ]
+{
+[e :U _cleanScreean ]
+[f ]
+"44
+[; ;renderer.c: 44:     for (char x = 0; x < (3*5); x++) {
+{
+[v _x `uc ~T0 @X0 1 a ]
+[e = _x -> -> 0 `i `uc ]
+[e $ < -> _x `i * -> 3 `i -> 5 `i 9  ]
+[e $U 10  ]
+[e :U 9 ]
+{
+"45
+[; ;renderer.c: 45:         for (char y = 0; y < (2*8); y++) {
+{
+[v _y `uc ~T0 @X0 1 a ]
+[e = _y -> -> 0 `i `uc ]
+[e $ < -> _y `i * -> 2 `i -> 8 `i 12  ]
+[e $U 13  ]
+[e :U 12 ]
+{
+"46
+[; ;renderer.c: 46:             setPixel(x, y, 0);
+[e ( _setPixel (3 , , -> _x `uc -> _y `uc -> -> 0 `i `uc ]
+"47
+[; ;renderer.c: 47:         }
+}
+[e ++ _y -> -> 1 `i `uc ]
+[e $ < -> _y `i * -> 2 `i -> 8 `i 12  ]
+[e :U 13 ]
+}
+"48
+[; ;renderer.c: 48:     }
+}
+[e ++ _x -> -> 1 `i `uc ]
+[e $ < -> _x `i * -> 3 `i -> 5 `i 9  ]
+[e :U 10 ]
+}
+"49
+[; ;renderer.c: 49: }
+[e :UE 8 ]
+}
+"51
+[; ;renderer.c: 51: void rendererInit() {
+[v _rendererInit `(v ~T0 @X0 1 ef ]
+{
+[e :U _rendererInit ]
+[f ]
+"52
+[; ;renderer.c: 52:     lcdInit();
+[e ( _lcdInit ..  ]
+"54
+[; ;renderer.c: 54:     cleanScreean();
+[e ( _cleanScreean ..  ]
+"57
+[; ;renderer.c: 57:     lcdCommand(0x46);
+[e ( _lcdCommand (1 -> -> 70 `i `uc ]
+"58
+[; ;renderer.c: 58:     for (char i = 0; i < 8; i++) {
+{
+[v _i `uc ~T0 @X0 1 a ]
+[e = _i -> -> 0 `i `uc ]
+[e $ < -> _i `i -> 8 `i 16  ]
+[e $U 17  ]
+[e :U 16 ]
+{
+"59
+[; ;renderer.c: 59:         lcdChar(0b11000);
+[e ( _lcdChar (1 -> -> 24 `i `uc ]
+"60
+[; ;renderer.c: 60:     }
+}
+[e ++ _i -> -> 1 `i `uc ]
+[e $ < -> _i `i -> 8 `i 16  ]
+[e :U 17 ]
+}
+"61
+[; ;renderer.c: 61: }
+[e :UE 15 ]
+}
+"63
+[; ;renderer.c: 63: void rendererStart() {
+[v _rendererStart `(v ~T0 @X0 1 ef ]
+{
+[e :U _rendererStart ]
+[f ]
+"64
+[; ;renderer.c: 64:     displayScreen();
+[e ( _displayScreen ..  ]
+"66
+[; ;renderer.c: 66:     lcdPosition(0, 3);
+[e ( _lcdPosition (2 , -> 0 `i -> 3 `i ]
+"67
+[; ;renderer.c: 67:     lcdChar(6);
+[e ( _lcdChar (1 -> -> 6 `i `uc ]
+"68
+[; ;renderer.c: 68:     lcdPosition(1, 3);
+[e ( _lcdPosition (2 , -> 1 `i -> 3 `i ]
+"69
+[; ;renderer.c: 69:     lcdChar(6);
+[e ( _lcdChar (1 -> -> 6 `i `uc ]
+"71
+[; ;renderer.c: 71:     lcdPosition(0, 4);
+[e ( _lcdPosition (2 , -> 0 `i -> 4 `i ]
+"72
+[; ;renderer.c: 72:     lcdString("Pontos:");
+[e ( _lcdString (1 :s 1C ]
+"73
+[; ;renderer.c: 73: }
+[e :UE 19 ]
+}
+[a 1C 80 111 110 116 111 115 58 0 ]

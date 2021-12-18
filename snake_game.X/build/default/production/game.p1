@@ -1,0 +1,895 @@
+Version 4.0 HI-TECH Software Intermediate Code
+"12 game.c
+[; ;game.c: 12: typedef struct {
+[s S1 `uc 1 `uc 1 ]
+[n S1 . x y ]
+"3 ./lcd.h
+[; ;./lcd.h: 3:   void lcdCommand(char value);
+[v _lcdCommand `(v ~T0 @X0 0 ef1`uc ]
+"4
+[; ;./lcd.h: 4:   void lcdChar(char value);
+[v _lcdChar `(v ~T0 @X0 0 ef1`uc ]
+"7 ./keypad.h
+[; ;./keypad.h: 7:  void kpInit(void);
+[v _kpInit `(v ~T0 @X0 0 ef ]
+"6 ./mixer.h
+[; ;./mixer.h: 6:     void mixerInit();
+[v _mixerInit `(v ~T0 @X0 0 e? ]
+"28 ./timer.h
+[; ;./timer.h: 28:  void timerInit(void);
+[v _timerInit `(v ~T0 @X0 0 ef ]
+"15 ./renderer.h
+[; ;./renderer.h: 15:     void rendererInit();
+[v _rendererInit `(v ~T0 @X0 0 e? ]
+"13 ./game.h
+[; ;./game.h: 13:     void newGame();
+[v _newGame `(v ~T0 @X0 0 e? ]
+"18 ./renderer.h
+[; ;./renderer.h: 18:     void cleanScreean();
+[v _cleanScreean `(v ~T0 @X0 0 e? ]
+"14
+[; ;./renderer.h: 14:     void setPixel(unsigned char x, unsigned char y, unsigned char val);
+[v _setPixel `(v ~T0 @X0 0 ef3`uc`uc`uc ]
+"16
+[; ;./renderer.h: 16:     void rendererStart();
+[v _rendererStart `(v ~T0 @X0 0 e? ]
+"11 ./mixer.h
+[; ;./mixer.h: 11:     void mixerRestart();
+[v _mixerRestart `(v ~T0 @X0 0 e? ]
+"7 ./lcd.h
+[; ;./lcd.h: 7:   void lcdPosition(int line, int col);
+[v _lcdPosition `(v ~T0 @X0 0 ef2`i`i ]
+"5
+[; ;./lcd.h: 5:   void lcdString(char msg[]);
+[v _lcdString `(v ~T0 @X0 0 ef1`*uc ]
+"27 ./timer.h
+[; ;./timer.h: 27:  void timerReset(unsigned int tempo);
+[v _timerReset `(v ~T0 @X0 0 ef1`ui ]
+"24
+[; ;./timer.h: 24:  void timerWait(void);
+[v _timerWait `(v ~T0 @X0 0 ef ]
+"24 ./serial.h
+[; ;./serial.h: 24:  unsigned char serialRead(void);
+[v _serialRead `(uc ~T0 @X0 0 ef ]
+"23
+[; ;./serial.h: 23:  void serialSend(unsigned char c);
+[v _serialSend `(v ~T0 @X0 0 ef1`uc ]
+"5 ./keypad.h
+[; ;./keypad.h: 5:     char kpReadKeyDown();
+[v _kpReadKeyDown `(uc ~T0 @X0 0 e? ]
+"12 ./mixer.h
+[; ;./mixer.h: 12:     void mixerStop();
+[v _mixerStop `(v ~T0 @X0 0 e? ]
+"180 game.c
+[; ;game.c: 180:             return STATUS_PAUSE;
+[c E49 0 1 2 3 4 .. ]
+[n E49 status STATUS_MENU STATUS_START STATUS_PLAYING STATUS_PAUSE STATUS_GAME_OVER  ]
+"13 ./mixer.h
+[; ;./mixer.h: 13:     void mixerUpdate();
+[v _mixerUpdate `(v ~T0 @X0 0 e? ]
+"6 ./keypad.h
+[; ;./keypad.h: 6:  void kpDebounce(void);
+[v _kpDebounce `(v ~T0 @X0 0 ef ]
+"17 game.c
+[; ;game.c: 17: Point snake[20 + 1];
+[v _snake `S1 ~T0 @X0 -> 21 `i e ]
+"18
+[; ;game.c: 18: Point food;
+[v _food `S1 ~T0 @X0 1 e ]
+"19
+[; ;game.c: 19: unsigned char snake_size = 1;
+[v _snake_size `uc ~T0 @X0 1 e ]
+[i _snake_size
+-> -> 1 `i `uc
+]
+"20
+[; ;game.c: 20: char moving = 'R', direction = 'R';
+[v _moving `uc ~T0 @X0 1 e ]
+[i _moving
+-> -> 82 `ui `uc
+]
+[v _direction `uc ~T0 @X0 1 e ]
+[i _direction
+-> -> 82 `ui `uc
+]
+"21
+[; ;game.c: 21: unsigned char count = 0;
+[v _count `uc ~T0 @X0 1 e ]
+[i _count
+-> -> 0 `i `uc
+]
+"22
+[; ;game.c: 22: char points[3] = "000";
+[v _points `uc ~T0 @X0 -> 3 `i e ]
+[i _points
+:U ..
+-> 48 `c
+-> 48 `c
+-> 48 `c
+..
+]
+"23
+[; ;game.c: 23: unsigned int random_seed = 0x78431;
+[v _random_seed `ui ~T0 @X0 1 e ]
+[i _random_seed
+-> -> 492593 `l `ui
+]
+"25
+[; ;game.c: 25: unsigned int random() {
+[v _random `(ui ~T0 @X0 1 ef ]
+{
+[e :U _random ]
+[f ]
+"26
+[; ;game.c: 26:     random_seed = (random_seed << 3) >> 6;
+[e = _random_seed >> << _random_seed -> 3 `i -> 6 `i ]
+"27
+[; ;game.c: 27:     random_seed = (random_seed + 191) * random_seed;
+[e = _random_seed * + _random_seed -> -> 191 `i `ui _random_seed ]
+"28
+[; ;game.c: 28:     return random_seed;
+[e ) _random_seed ]
+[e $UE 2  ]
+"29
+[; ;game.c: 29: }
+[e :UE 2 ]
+}
+"31
+[; ;game.c: 31: void replaceFood() {
+[v _replaceFood `(v ~T0 @X0 1 ef ]
+{
+[e :U _replaceFood ]
+[f ]
+"32
+[; ;game.c: 32:     food.x = random() % (3*5);
+[e = . _food 0 -> % ( _random ..  -> * -> 3 `i -> 5 `i `ui `uc ]
+"33
+[; ;game.c: 33:     food.y = random() % (2*8);
+[e = . _food 1 -> % ( _random ..  -> * -> 2 `i -> 8 `i `ui `uc ]
+"34
+[; ;game.c: 34: }
+[e :UE 3 ]
+}
+"36
+[; ;game.c: 36: void addPoint() {
+[v _addPoint `(v ~T0 @X0 1 ef ]
+{
+[e :U _addPoint ]
+[f ]
+"38
+[; ;game.c: 38:     points[2] += 1;
+[e =+ *U + &U _points * -> -> -> 2 `i `ui `ux -> -> # *U &U _points `ui `ux -> -> 1 `i `uc ]
+"39
+[; ;game.c: 39:     for (int i = 2; i > 0; i--) {
+{
+[v _i `i ~T0 @X0 1 a ]
+[e = _i -> 2 `i ]
+[e $ > _i -> 0 `i 5  ]
+[e $U 6  ]
+[e :U 5 ]
+{
+"40
+[; ;game.c: 40:         if (points[i] > '9') {
+[e $ ! > -> *U + &U _points * -> -> _i `ui `ux -> -> # *U &U _points `ui `ux `ui -> 57 `ui 8  ]
+{
+"41
+[; ;game.c: 41:             points[i] -= 10;
+[e =- *U + &U _points * -> -> _i `ui `ux -> -> # *U &U _points `ui `ux -> -> 10 `i `uc ]
+"42
+[; ;game.c: 42:             points[i-1] += 1;
+[e =+ *U + &U _points * -> -> - _i -> 1 `i `ui `ux -> -> # *U &U _points `ui `ux -> -> 1 `i `uc ]
+"43
+[; ;game.c: 43:         }
+}
+[e :U 8 ]
+"44
+[; ;game.c: 44:     }
+}
+[e -- _i -> 1 `i ]
+[e $ > _i -> 0 `i 5  ]
+[e :U 6 ]
+}
+"45
+[; ;game.c: 45: }
+[e :UE 4 ]
+}
+"47
+[; ;game.c: 47: void resetPoints() {
+[v _resetPoints `(v ~T0 @X0 1 ef ]
+{
+[e :U _resetPoints ]
+[f ]
+"48
+[; ;game.c: 48:     for (int i = 0; i < 5; i ++) {
+{
+[v _i `i ~T0 @X0 1 a ]
+[e = _i -> 0 `i ]
+[e $ < _i -> 5 `i 10  ]
+[e $U 11  ]
+[e :U 10 ]
+{
+"49
+[; ;game.c: 49:         points[i] = '0';
+[e = *U + &U _points * -> -> _i `ui `ux -> -> # *U &U _points `ui `ux -> -> 48 `ui `uc ]
+"50
+[; ;game.c: 50:     }
+}
+[e ++ _i -> 1 `i ]
+[e $ < _i -> 5 `i 10  ]
+[e :U 11 ]
+}
+"51
+[; ;game.c: 51: }
+[e :UE 9 ]
+}
+"53
+[; ;game.c: 53: void displayPoints() {
+[v _displayPoints `(v ~T0 @X0 1 ef ]
+{
+[e :U _displayPoints ]
+[f ]
+"54
+[; ;game.c: 54:     lcdCommand(0x8C);
+[e ( _lcdCommand (1 -> -> 140 `i `uc ]
+"56
+[; ;game.c: 56:     for (int i = 0; i < 3; i++) {
+{
+[v _i `i ~T0 @X0 1 a ]
+[e = _i -> 0 `i ]
+[e $ < _i -> 3 `i 14  ]
+[e $U 15  ]
+[e :U 14 ]
+{
+"57
+[; ;game.c: 57:         lcdChar(points[i]);
+[e ( _lcdChar (1 *U + &U _points * -> -> _i `ui `ux -> -> # *U &U _points `ui `ux ]
+"58
+[; ;game.c: 58:     }
+}
+[e ++ _i -> 1 `i ]
+[e $ < _i -> 3 `i 14  ]
+[e :U 15 ]
+}
+"59
+[; ;game.c: 59: }
+[e :UE 13 ]
+}
+"61
+[; ;game.c: 61: void gameInit() {
+[v _gameInit `(v ~T0 @X0 1 ef ]
+{
+[e :U _gameInit ]
+[f ]
+"62
+[; ;game.c: 62:     kpInit();
+[e ( _kpInit ..  ]
+"63
+[; ;game.c: 63:     mixerInit();
+[e ( _mixerInit ..  ]
+"64
+[; ;game.c: 64:     timerInit();
+[e ( _timerInit ..  ]
+"65
+[; ;game.c: 65:     rendererInit();
+[e ( _rendererInit ..  ]
+"67
+[; ;game.c: 67:     newGame();
+[e ( _newGame ..  ]
+"68
+[; ;game.c: 68: }
+[e :UE 17 ]
+}
+"70
+[; ;game.c: 70: void newGame() {
+[v _newGame `(v ~T0 @X0 1 ef ]
+{
+[e :U _newGame ]
+[f ]
+"72
+[; ;game.c: 72:     snake[0].x = 1;
+[e = . *U + &U _snake * -> -> -> 0 `i `ui `ux -> -> # *U &U _snake `ui `ux 0 -> -> 1 `i `uc ]
+"73
+[; ;game.c: 73:     snake[0].y = 0;
+[e = . *U + &U _snake * -> -> -> 0 `i `ui `ux -> -> # *U &U _snake `ui `ux 1 -> -> 0 `i `uc ]
+"74
+[; ;game.c: 74:     snake[1].x = 0;
+[e = . *U + &U _snake * -> -> -> 1 `i `ui `ux -> -> # *U &U _snake `ui `ux 0 -> -> 0 `i `uc ]
+"75
+[; ;game.c: 75:     snake[1].y = 0;
+[e = . *U + &U _snake * -> -> -> 1 `i `ui `ux -> -> # *U &U _snake `ui `ux 1 -> -> 0 `i `uc ]
+"76
+[; ;game.c: 76:     snake_size = 1;
+[e = _snake_size -> -> 1 `i `uc ]
+"78
+[; ;game.c: 78:     resetPoints();
+[e ( _resetPoints ..  ]
+"80
+[; ;game.c: 80:     replaceFood();
+[e ( _replaceFood ..  ]
+"82
+[; ;game.c: 82:     cleanScreean();
+[e ( _cleanScreean ..  ]
+"85
+[; ;game.c: 85:     setPixel(snake[0].x, snake[0].y, 1);
+[e ( _setPixel (3 , , -> . *U + &U _snake * -> -> -> 0 `i `ui `ux -> -> # *U &U _snake `ui `ux 0 `uc -> . *U + &U _snake * -> -> -> 0 `i `ui `ux -> -> # *U &U _snake `ui `ux 1 `uc -> -> 1 `i `uc ]
+"86
+[; ;game.c: 86:     setPixel(snake[1].x, snake[1].y, 1);
+[e ( _setPixel (3 , , -> . *U + &U _snake * -> -> -> 1 `i `ui `ux -> -> # *U &U _snake `ui `ux 0 `uc -> . *U + &U _snake * -> -> -> 1 `i `ui `ux -> -> # *U &U _snake `ui `ux 1 `uc -> -> 1 `i `uc ]
+"89
+[; ;game.c: 89:     setPixel(food.x, food.y, 1);
+[e ( _setPixel (3 , , -> . _food 0 `uc -> . _food 1 `uc -> -> 1 `i `uc ]
+"90
+[; ;game.c: 90: }
+[e :UE 18 ]
+}
+"92
+[; ;game.c: 92: void gameStart() {
+[v _gameStart `(v ~T0 @X0 1 ef ]
+{
+[e :U _gameStart ]
+[f ]
+"93
+[; ;game.c: 93:     rendererStart();
+[e ( _rendererStart ..  ]
+"94
+[; ;game.c: 94:     mixerRestart();
+[e ( _mixerRestart ..  ]
+"95
+[; ;game.c: 95: }
+[e :UE 19 ]
+}
+"97
+[; ;game.c: 97: void updateSnake() {
+[v _updateSnake `(v ~T0 @X0 1 ef ]
+{
+[e :U _updateSnake ]
+[f ]
+"98
+[; ;game.c: 98:     unsigned char i;
+[v _i `uc ~T0 @X0 1 a ]
+"100
+[; ;game.c: 100:     for (i = snake_size; i > 0; i--) {
+{
+[e = _i _snake_size ]
+[e $ > -> _i `i -> 0 `i 21  ]
+[e $U 22  ]
+[e :U 21 ]
+{
+"101
+[; ;game.c: 101:         snake[i] = snake[i - 1];
+[e = *U + &U _snake * -> _i `ux -> -> # *U &U _snake `ui `ux *U + &U _snake * -> -> - -> _i `i -> 1 `i `ui `ux -> -> # *U &U _snake `ui `ux ]
+"102
+[; ;game.c: 102:     }
+}
+[e -- _i -> -> 1 `i `uc ]
+[e $ > -> _i `i -> 0 `i 21  ]
+[e :U 22 ]
+}
+"105
+[; ;game.c: 105:     moving = direction;
+[e = _moving _direction ]
+"106
+[; ;game.c: 106:     switch (moving) {
+[e $U 25  ]
+{
+"107
+[; ;game.c: 107:         case 'R': snake[0].x++;
+[e :U 26 ]
+[e ++ . *U + &U _snake * -> -> -> 0 `i `ui `ux -> -> # *U &U _snake `ui `ux 0 -> -> 1 `i `uc ]
+"108
+[; ;game.c: 108:             break;
+[e $U 24  ]
+"109
+[; ;game.c: 109:         case 'L': snake[0].x--;
+[e :U 27 ]
+[e -- . *U + &U _snake * -> -> -> 0 `i `ui `ux -> -> # *U &U _snake `ui `ux 0 -> -> 1 `i `uc ]
+"110
+[; ;game.c: 110:             break;
+[e $U 24  ]
+"111
+[; ;game.c: 111:         case 'U': snake[0].y--;
+[e :U 28 ]
+[e -- . *U + &U _snake * -> -> -> 0 `i `ui `ux -> -> # *U &U _snake `ui `ux 1 -> -> 1 `i `uc ]
+"112
+[; ;game.c: 112:             break;
+[e $U 24  ]
+"113
+[; ;game.c: 113:         case 'D': snake[0].y++;
+[e :U 29 ]
+[e ++ . *U + &U _snake * -> -> -> 0 `i `ui `ux -> -> # *U &U _snake `ui `ux 1 -> -> 1 `i `uc ]
+"114
+[; ;game.c: 114:             break;
+[e $U 24  ]
+"115
+[; ;game.c: 115:     }
+}
+[e $U 24  ]
+[e :U 25 ]
+[e [\ -> _moving `i , $ -> -> 82 `ui `i 26
+ , $ -> -> 76 `ui `i 27
+ , $ -> -> 85 `ui `i 28
+ , $ -> -> 68 `ui `i 29
+ 24 ]
+[e :U 24 ]
+"116
+[; ;game.c: 116:     snake[0].x = snake[0].x + (3*5);
+[e = . *U + &U _snake * -> -> -> 0 `i `ui `ux -> -> # *U &U _snake `ui `ux 0 -> + -> . *U + &U _snake * -> -> -> 0 `i `ui `ux -> -> # *U &U _snake `ui `ux 0 `i * -> 3 `i -> 5 `i `uc ]
+"117
+[; ;game.c: 117:     snake[0].x = snake[0].x % (3*5);
+[e = . *U + &U _snake * -> -> -> 0 `i `ui `ux -> -> # *U &U _snake `ui `ux 0 -> % -> . *U + &U _snake * -> -> -> 0 `i `ui `ux -> -> # *U &U _snake `ui `ux 0 `i * -> 3 `i -> 5 `i `uc ]
+"118
+[; ;game.c: 118:     snake[0].y = snake[0].y + (2*8);
+[e = . *U + &U _snake * -> -> -> 0 `i `ui `ux -> -> # *U &U _snake `ui `ux 1 -> + -> . *U + &U _snake * -> -> -> 0 `i `ui `ux -> -> # *U &U _snake `ui `ux 1 `i * -> 2 `i -> 8 `i `uc ]
+"119
+[; ;game.c: 119:     snake[0].y = snake[0].y % (2*8);
+[e = . *U + &U _snake * -> -> -> 0 `i `ui `ux -> -> # *U &U _snake `ui `ux 1 -> % -> . *U + &U _snake * -> -> -> 0 `i `ui `ux -> -> # *U &U _snake `ui `ux 1 `i * -> 2 `i -> 8 `i `uc ]
+"120
+[; ;game.c: 120: }
+[e :UE 20 ]
+}
+"122
+[; ;game.c: 122: void gameOver() {
+[v _gameOver `(v ~T0 @X0 1 ef ]
+{
+[e :U _gameOver ]
+[f ]
+"124
+[; ;game.c: 124:     lcdCommand(0x01);
+[e ( _lcdCommand (1 -> -> 1 `i `uc ]
+"126
+[; ;game.c: 126:     lcdPosition(0, 2);
+[e ( _lcdPosition (2 , -> 0 `i -> 2 `i ]
+"128
+[; ;game.c: 128:     lcdString("Voce perdeu");
+[e ( _lcdString (1 :s 1C ]
+"129
+[; ;game.c: 129:     lcdPosition(1, 2);
+[e ( _lcdPosition (2 , -> 1 `i -> 2 `i ]
+"130
+[; ;game.c: 130:     lcdString("Pontos: ");
+[e ( _lcdString (1 :s 2C ]
+"131
+[; ;game.c: 131:     for (int i = 0; i < 3; i++) {
+{
+[v _i `i ~T0 @X0 1 a ]
+[e = _i -> 0 `i ]
+[e $ < _i -> 3 `i 31  ]
+[e $U 32  ]
+[e :U 31 ]
+{
+"132
+[; ;game.c: 132:         lcdChar(points[i]);
+[e ( _lcdChar (1 *U + &U _points * -> -> _i `ui `ux -> -> # *U &U _points `ui `ux ]
+"133
+[; ;game.c: 133:     }
+}
+[e ++ _i -> 1 `i ]
+[e $ < _i -> 3 `i 31  ]
+[e :U 32 ]
+}
+"135
+[; ;game.c: 135:     for (int i = 0; i < 100; i++) {
+{
+[v _i `i ~T0 @X0 1 a ]
+[e = _i -> 0 `i ]
+[e $ < _i -> 100 `i 34  ]
+[e $U 35  ]
+[e :U 34 ]
+{
+"136
+[; ;game.c: 136:         timerReset(20000);
+[e ( _timerReset (1 -> -> 20000 `i `ui ]
+"137
+[; ;game.c: 137:         timerWait();
+[e ( _timerWait ..  ]
+"138
+[; ;game.c: 138:     }
+}
+[e ++ _i -> 1 `i ]
+[e $ < _i -> 100 `i 34  ]
+[e :U 35 ]
+}
+"140
+[; ;game.c: 140: }
+[e :UE 30 ]
+}
+"142
+[; ;game.c: 142: char readSerialController() {
+[v _readSerialController `(uc ~T0 @X0 1 ef ]
+{
+[e :U _readSerialController ]
+[f ]
+"143
+[; ;game.c: 143:     static char last_key = 0;
+[v F88 `uc ~T0 @X0 1 s last_key ]
+[i F88
+-> -> 0 `i `uc
+]
+"144
+[; ;game.c: 144:     char key = serialRead();
+[v _key `uc ~T0 @X0 1 a ]
+[e = _key -> ( _serialRead ..  `uc ]
+"145
+[; ;game.c: 145:     serialSend('!');
+[e ( _serialSend (1 -> -> 33 `ui `uc ]
+"146
+[; ;game.c: 146:     if (key != last_key) {
+[e $ ! != -> _key `i -> F88 `i 38  ]
+{
+"147
+[; ;game.c: 147:         last_key = key;
+[e = F88 _key ]
+"148
+[; ;game.c: 148:         return key;
+[e ) _key ]
+[e $UE 37  ]
+"149
+[; ;game.c: 149:     }
+}
+[e :U 38 ]
+"150
+[; ;game.c: 150:     return 0;
+[e ) -> -> 0 `i `uc ]
+[e $UE 37  ]
+"151
+[; ;game.c: 151: }
+[e :UE 37 ]
+}
+"153
+[; ;game.c: 153: char readInput() {
+[v _readInput `(uc ~T0 @X0 1 ef ]
+{
+[e :U _readInput ]
+[f ]
+"156
+[; ;game.c: 156:     char key = kpReadKeyDown();
+[v _key `uc ~T0 @X0 1 a ]
+[e = _key ( _kpReadKeyDown ..  ]
+"157
+[; ;game.c: 157:     if (!key) {
+[e $ ! ! != -> _key `i -> 0 `i 40  ]
+{
+"158
+[; ;game.c: 158:         key = readSerialController();
+[e = _key ( _readSerialController ..  ]
+"159
+[; ;game.c: 159:     }
+}
+[e :U 40 ]
+"161
+[; ;game.c: 161:     switch (key) {
+[e $U 42  ]
+{
+"162
+[; ;game.c: 162:         case 'R':
+[e :U 43 ]
+"163
+[; ;game.c: 163:             direction = (moving != 'L') ? key: direction;
+[e = _direction -> ? != -> _moving `ui -> 76 `ui : -> _key `i -> _direction `i `uc ]
+"164
+[; ;game.c: 164:             random_seed += snake[0].x;
+[e =+ _random_seed -> . *U + &U _snake * -> -> -> 0 `i `ui `ux -> -> # *U &U _snake `ui `ux 0 `ui ]
+"165
+[; ;game.c: 165:             break;
+[e $U 41  ]
+"166
+[; ;game.c: 166:         case 'L':
+[e :U 44 ]
+"167
+[; ;game.c: 167:             direction = (moving != 'R') ? key: direction;
+[e = _direction -> ? != -> _moving `ui -> 82 `ui : -> _key `i -> _direction `i `uc ]
+"168
+[; ;game.c: 168:             random_seed += snake[0].y;
+[e =+ _random_seed -> . *U + &U _snake * -> -> -> 0 `i `ui `ux -> -> # *U &U _snake `ui `ux 1 `ui ]
+"169
+[; ;game.c: 169:             break;
+[e $U 41  ]
+"170
+[; ;game.c: 170:         case 'U':
+[e :U 45 ]
+"171
+[; ;game.c: 171:             direction = (moving != 'D') ? key: direction;
+[e = _direction -> ? != -> _moving `ui -> 68 `ui : -> _key `i -> _direction `i `uc ]
+"172
+[; ;game.c: 172:             random_seed -= snake[0].x;
+[e =- _random_seed -> . *U + &U _snake * -> -> -> 0 `i `ui `ux -> -> # *U &U _snake `ui `ux 0 `ui ]
+"173
+[; ;game.c: 173:             break;
+[e $U 41  ]
+"174
+[; ;game.c: 174:         case 'D':
+[e :U 46 ]
+"175
+[; ;game.c: 175:             direction = (moving != 'U') ? key: direction;
+[e = _direction -> ? != -> _moving `ui -> 85 `ui : -> _key `i -> _direction `i `uc ]
+"176
+[; ;game.c: 176:             random_seed -= snake[0].y;
+[e =- _random_seed -> . *U + &U _snake * -> -> -> 0 `i `ui `ux -> -> # *U &U _snake `ui `ux 1 `ui ]
+"177
+[; ;game.c: 177:             break;
+[e $U 41  ]
+"178
+[; ;game.c: 178:         case 'S':
+[e :U 47 ]
+"179
+[; ;game.c: 179:             mixerStop();
+[e ( _mixerStop ..  ]
+"180
+[; ;game.c: 180:             return STATUS_PAUSE;
+[e ) -> . `E49 3 `uc ]
+[e $UE 39  ]
+"181
+[; ;game.c: 181:             break;
+[e $U 41  ]
+"182
+[; ;game.c: 182:     }
+}
+[e $U 41  ]
+[e :U 42 ]
+[e [\ -> _key `i , $ -> -> 82 `ui `i 43
+ , $ -> -> 76 `ui `i 44
+ , $ -> -> 85 `ui `i 45
+ , $ -> -> 68 `ui `i 46
+ , $ -> -> 83 `ui `i 47
+ 41 ]
+[e :U 41 ]
+"183
+[; ;game.c: 183:     return STATUS_PLAYING;
+[e ) -> . `E49 2 `uc ]
+[e $UE 39  ]
+"184
+[; ;game.c: 184: }
+[e :UE 39 ]
+}
+"186
+[; ;game.c: 186: void checkFood() {
+[v _checkFood `(v ~T0 @X0 1 ef ]
+{
+[e :U _checkFood ]
+[f ]
+"190
+[; ;game.c: 190:     if ((snake[0].x == food.x) && (snake[0].y == food.y)) {
+[e $ ! && == -> . *U + &U _snake * -> -> -> 0 `i `ui `ux -> -> # *U &U _snake `ui `ux 0 `i -> . _food 0 `i == -> . *U + &U _snake * -> -> -> 0 `i `ui `ux -> -> # *U &U _snake `ui `ux 1 `i -> . _food 1 `i 49  ]
+{
+"191
+[; ;game.c: 191:         replaceFood();
+[e ( _replaceFood ..  ]
+"192
+[; ;game.c: 192:         addPoint();
+[e ( _addPoint ..  ]
+"193
+[; ;game.c: 193:         if (snake_size < 20) {
+[e $ ! < -> _snake_size `i -> 20 `i 50  ]
+{
+"194
+[; ;game.c: 194:             snake_size++;
+[e ++ _snake_size -> -> 1 `i `uc ]
+"195
+[; ;game.c: 195:             return;
+[e $UE 48  ]
+"196
+[; ;game.c: 196:         }
+}
+[e :U 50 ]
+"197
+[; ;game.c: 197:     }
+}
+[e :U 49 ]
+"199
+[; ;game.c: 199:     setPixel(snake[snake_size].x, snake[snake_size].y, 0);
+[e ( _setPixel (3 , , -> . *U + &U _snake * -> _snake_size `ux -> -> # *U &U _snake `ui `ux 0 `uc -> . *U + &U _snake * -> _snake_size `ux -> -> # *U &U _snake `ui `ux 1 `uc -> -> 0 `i `uc ]
+"200
+[; ;game.c: 200: }
+[e :UE 48 ]
+}
+"202
+[; ;game.c: 202: char checkCollision() {
+[v _checkCollision `(uc ~T0 @X0 1 ef ]
+{
+[e :U _checkCollision ]
+[f ]
+"203
+[; ;game.c: 203:     for (int i = 2; i <= snake_size; i++) {
+{
+[v _i `i ~T0 @X0 1 a ]
+[e = _i -> 2 `i ]
+[e $U 55  ]
+[e :U 52 ]
+{
+"204
+[; ;game.c: 204:         if (snake[0].x == snake[i].x && snake[0].y == snake[i].y) {
+[e $ ! && == -> . *U + &U _snake * -> -> -> 0 `i `ui `ux -> -> # *U &U _snake `ui `ux 0 `i -> . *U + &U _snake * -> -> _i `ui `ux -> -> # *U &U _snake `ui `ux 0 `i == -> . *U + &U _snake * -> -> -> 0 `i `ui `ux -> -> # *U &U _snake `ui `ux 1 `i -> . *U + &U _snake * -> -> _i `ui `ux -> -> # *U &U _snake `ui `ux 1 `i 56  ]
+{
+"205
+[; ;game.c: 205:             return 1;
+[e ) -> -> 1 `i `uc ]
+[e $UE 51  ]
+"206
+[; ;game.c: 206:         }
+}
+[e :U 56 ]
+"207
+[; ;game.c: 207:     }
+}
+[e ++ _i -> 1 `i ]
+[e :U 55 ]
+[e $ <= _i -> _snake_size `i 52  ]
+[e :U 53 ]
+}
+"208
+[; ;game.c: 208:     return 0;
+[e ) -> -> 0 `i `uc ]
+[e $UE 51  ]
+"209
+[; ;game.c: 209: }
+[e :UE 51 ]
+}
+"211
+[; ;game.c: 211: char gameUpdate() {
+[v _gameUpdate `(uc ~T0 @X0 1 ef ]
+{
+[e :U _gameUpdate ]
+[f ]
+"212
+[; ;game.c: 212:     timerReset(5000);
+[e ( _timerReset (1 -> -> 5000 `i `ui ]
+"213
+[; ;game.c: 213:     mixerUpdate();
+[e ( _mixerUpdate ..  ]
+"215
+[; ;game.c: 215:     if (count < 30) {
+[e $ ! < -> _count `i -> 30 `i 58  ]
+{
+"216
+[; ;game.c: 216:         if (count & 1) {
+[e $ ! != & -> _count `i -> 1 `i -> 0 `i 59  ]
+{
+"217
+[; ;game.c: 217:             kpDebounce();
+[e ( _kpDebounce ..  ]
+"218
+[; ;game.c: 218:         }
+}
+[e $U 60  ]
+"219
+[; ;game.c: 219:         else {
+[e :U 59 ]
+{
+"220
+[; ;game.c: 220:             if (readInput() == STATUS_PAUSE) { return STATUS_PAUSE; }
+[e $ ! == -> ( _readInput ..  `i -> . `E49 3 `i 61  ]
+{
+[e ) -> . `E49 3 `uc ]
+[e $UE 57  ]
+}
+[e :U 61 ]
+"221
+[; ;game.c: 221:         }
+}
+[e :U 60 ]
+"222
+[; ;game.c: 222:     }
+}
+[e $U 62  ]
+"223
+[; ;game.c: 223:     else if (count == 30) {
+[e :U 58 ]
+[e $ ! == -> _count `i -> 30 `i 63  ]
+{
+"224
+[; ;game.c: 224:         checkFood();
+[e ( _checkFood ..  ]
+"225
+[; ;game.c: 225:     } else if (count == 30 + 1) {
+}
+[e $U 64  ]
+[e :U 63 ]
+[e $ ! == -> _count `i + -> 30 `i -> 1 `i 65  ]
+{
+"226
+[; ;game.c: 226:         updateSnake();
+[e ( _updateSnake ..  ]
+"227
+[; ;game.c: 227:     } else if (count == 30 + 2) {
+}
+[e $U 66  ]
+[e :U 65 ]
+[e $ ! == -> _count `i + -> 30 `i -> 2 `i 67  ]
+{
+"228
+[; ;game.c: 228:         if (checkCollision()) {
+[e $ ! != -> ( _checkCollision ..  `i -> 0 `i 68  ]
+{
+"229
+[; ;game.c: 229:             gameOver();
+[e ( _gameOver ..  ]
+"230
+[; ;game.c: 230:             return STATUS_GAME_OVER;
+[e ) -> . `E49 4 `uc ]
+[e $UE 57  ]
+"231
+[; ;game.c: 231:         }
+}
+[e :U 68 ]
+"232
+[; ;game.c: 232:     } else if (count == 30 + 3) {
+}
+[e $U 69  ]
+[e :U 67 ]
+[e $ ! == -> _count `i + -> 30 `i -> 3 `i 70  ]
+{
+"234
+[; ;game.c: 234:         setPixel(snake[0].x, snake[0].y, 1);
+[e ( _setPixel (3 , , -> . *U + &U _snake * -> -> -> 0 `i `ui `ux -> -> # *U &U _snake `ui `ux 0 `uc -> . *U + &U _snake * -> -> -> 0 `i `ui `ux -> -> # *U &U _snake `ui `ux 1 `uc -> -> 1 `i `uc ]
+"235
+[; ;game.c: 235:     } else if (count == 30 + 4) {
+}
+[e $U 71  ]
+[e :U 70 ]
+[e $ ! == -> _count `i + -> 30 `i -> 4 `i 72  ]
+{
+"237
+[; ;game.c: 237:         setPixel(food.x, food.y, 1);
+[e ( _setPixel (3 , , -> . _food 0 `uc -> . _food 1 `uc -> -> 1 `i `uc ]
+"238
+[; ;game.c: 238:     } else if (count == 30 + 5) {
+}
+[e $U 73  ]
+[e :U 72 ]
+[e $ ! == -> _count `i + -> 30 `i -> 5 `i 74  ]
+{
+"240
+[; ;game.c: 240:         lcdCommand(0x8C);
+[e ( _lcdCommand (1 -> -> 140 `i `uc ]
+"241
+[; ;game.c: 241:         lcdChar(points[0]);
+[e ( _lcdChar (1 *U + &U _points * -> -> -> 0 `i `ui `ux -> -> # *U &U _points `ui `ux ]
+"242
+[; ;game.c: 242:     } else if (count == 30 + 6) {
+}
+[e $U 75  ]
+[e :U 74 ]
+[e $ ! == -> _count `i + -> 30 `i -> 6 `i 76  ]
+{
+"244
+[; ;game.c: 244:         lcdChar(points[1]);
+[e ( _lcdChar (1 *U + &U _points * -> -> -> 1 `i `ui `ux -> -> # *U &U _points `ui `ux ]
+"245
+[; ;game.c: 245:         lcdChar(points[2]);
+[e ( _lcdChar (1 *U + &U _points * -> -> -> 2 `i `ui `ux -> -> # *U &U _points `ui `ux ]
+"246
+[; ;game.c: 246:     } else {
+}
+[e $U 77  ]
+[e :U 76 ]
+{
+"247
+[; ;game.c: 247:         count = 0;
+[e = _count -> -> 0 `i `uc ]
+"248
+[; ;game.c: 248:     }
+}
+[e :U 77 ]
+[e :U 75 ]
+[e :U 73 ]
+[e :U 71 ]
+[e :U 69 ]
+[e :U 66 ]
+[e :U 64 ]
+[e :U 62 ]
+"249
+[; ;game.c: 249:     count++;
+[e ++ _count -> -> 1 `i `uc ]
+"250
+[; ;game.c: 250:     timerWait();
+[e ( _timerWait ..  ]
+"252
+[; ;game.c: 252:     return STATUS_PLAYING;
+[e ) -> . `E49 2 `uc ]
+[e $UE 57  ]
+"253
+[; ;game.c: 253: }
+[e :UE 57 ]
+}
+[a 1C 86 111 99 101 32 112 101 114 100 101 117 0 ]
+[a 2C 80 111 110 116 111 115 58 32 0 ]

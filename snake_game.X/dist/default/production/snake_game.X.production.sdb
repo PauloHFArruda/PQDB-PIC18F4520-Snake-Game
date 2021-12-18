@@ -1,0 +1,955 @@
+[p GLOBOPT AUTOSTATIC IEEE_FLT IEEE_DBL LFSROK EMI_WORD ]
+[d version 1.1 ]
+[d edition pro ]
+[d chip 18F4520 ]
+[d frameptr 4065 ]
+"48 D:\Disciplinas\Embarcados\Exercicios\snake_game.X\keypad.c
+[e E10 pin_label `uc
+PIN_A0 0
+PIN_A1 1
+PIN_A2 2
+PIN_A3 3
+PIN_A4 4
+PIN_A5 5
+PIN_A6 6
+PIN_A7 7
+PIN_B0 8
+PIN_B1 9
+PIN_B2 10
+PIN_B3 11
+PIN_B4 12
+PIN_B5 13
+PIN_B6 14
+PIN_B7 15
+PIN_C0 16
+PIN_C1 17
+PIN_C2 18
+PIN_C3 19
+PIN_C4 20
+PIN_C5 21
+PIN_C6 22
+PIN_C7 23
+PIN_D0 24
+PIN_D1 25
+PIN_D2 26
+PIN_D3 27
+PIN_D4 28
+PIN_D5 29
+PIN_D6 30
+PIN_D7 31
+PIN_E0 32
+PIN_E1 33
+PIN_E2 34
+PIN_E3 35
+PIN_E4 36
+PIN_E5 37
+PIN_E6 38
+PIN_E7 39
+]
+"19 D:\Disciplinas\Embarcados\Exercicios\snake_game.X\lcd.c
+[e E5 pin_label `uc
+PIN_A0 0
+PIN_A1 1
+PIN_A2 2
+PIN_A3 3
+PIN_A4 4
+PIN_A5 5
+PIN_A6 6
+PIN_A7 7
+PIN_B0 8
+PIN_B1 9
+PIN_B2 10
+PIN_B3 11
+PIN_B4 12
+PIN_B5 13
+PIN_B6 14
+PIN_B7 15
+PIN_C0 16
+PIN_C1 17
+PIN_C2 18
+PIN_C3 19
+PIN_C4 20
+PIN_C5 21
+PIN_C6 22
+PIN_C7 23
+PIN_D0 24
+PIN_D1 25
+PIN_D2 26
+PIN_D3 27
+PIN_D4 28
+PIN_D5 29
+PIN_D6 30
+PIN_D7 31
+PIN_E0 32
+PIN_E1 33
+PIN_E2 34
+PIN_E3 35
+PIN_E4 36
+PIN_E5 37
+PIN_E6 38
+PIN_E7 39
+]
+"8 D:\Disciplinas\Embarcados\Exercicios\snake_game.X\main.c
+[e E31 status `uc
+STATUS_MENU 0
+STATUS_START 1
+STATUS_PLAYING 2
+STATUS_PAUSE 3
+STATUS_GAME_OVER 4
+]
+"24
+[e E19 . `uc
+MIXER_OUTPUT_SERIAL 0
+MIXER_OUTPUT_BUZZER 1
+]
+"4 D:\Disciplinas\Embarcados\Exercicios\snake_game.X\so.c
+[e E2 pin_label `uc
+PIN_A0 0
+PIN_A1 1
+PIN_A2 2
+PIN_A3 3
+PIN_A4 4
+PIN_A5 5
+PIN_A6 6
+PIN_A7 7
+PIN_B0 8
+PIN_B1 9
+PIN_B2 10
+PIN_B3 11
+PIN_B4 12
+PIN_B5 13
+PIN_B6 14
+PIN_B7 15
+PIN_C0 16
+PIN_C1 17
+PIN_C2 18
+PIN_C3 19
+PIN_C4 20
+PIN_C5 21
+PIN_C6 22
+PIN_C7 23
+PIN_D0 24
+PIN_D1 25
+PIN_D2 26
+PIN_D3 27
+PIN_D4 28
+PIN_D5 29
+PIN_D6 30
+PIN_D7 31
+PIN_E0 32
+PIN_E1 33
+PIN_E2 34
+PIN_E3 35
+PIN_E4 36
+PIN_E5 37
+PIN_E6 38
+PIN_E7 39
+]
+"15 D:\Disciplinas\Embarcados\Exercicios\snake_game.X\songs.c
+[e E12 notes `uc
+NOTE_F4 0
+NOTE_FS4 1
+NOTE_G4 2
+NOTE_GS4 3
+NOTE_A4 4
+NOTE_AS4 5
+NOTE_B4 6
+NOTE_C5 7
+NOTE_CS5 8
+NOTE_D5 9
+NOTE_DS5 10
+NOTE_E5 11
+NOTE_F5 12
+NOTE_FS5 13
+NOTE_G5 14
+NOTE_GS5 15
+NOTE_A5 16
+NOTE_AS5 17
+NOTE_B5 18
+NOTE_C6 19
+NOTE_CS6 20
+NOTE_D6 21
+NOTE_DS6 22
+NOTE_E6 23
+NOTE_F6 24
+NOTE_FS6 25
+NOTE_G6 26
+NOTE_GS6 27
+NOTE_A6 28
+REST 29
+]
+"13 D:\Disciplinas\Embarcados\Exercicios\snake_game.X\mixer.c
+[e E2 . `uc
+MIXER_OUTPUT_SERIAL 0
+MIXER_OUTPUT_BUZZER 1
+]
+"180 D:\Disciplinas\Embarcados\Exercicios\snake_game.X\game.c
+[e E49 status `uc
+STATUS_MENU 0
+STATUS_START 1
+STATUS_PLAYING 2
+STATUS_PAUSE 3
+STATUS_GAME_OVER 4
+]
+"7 C:\Program Files\Microchip\xc8\v2.31\pic\sources\c99\common\aldiv.c
+[v ___aldiv __aldiv `(l  1 e 4 0 ]
+"7 C:\Program Files\Microchip\xc8\v2.31\pic\sources\c99\common\awdiv.c
+[v ___awdiv __awdiv `(i  1 e 2 0 ]
+"7 C:\Program Files\Microchip\xc8\v2.31\pic\sources\c99\common\awmod.c
+[v ___awmod __awmod `(i  1 e 2 0 ]
+"4 C:\Program Files\Microchip\xc8\v2.31\pic\sources\c99\common\fleq.c
+[v ___fleq __fleq `(b  1 e 0 0 ]
+"62 C:\Program Files\Microchip\xc8\v2.31\pic\sources\c99\common\float.c
+[v ___ftpack __ftpack `(f  1 e 4 0 ]
+"86 C:\Program Files\Microchip\xc8\v2.31\pic\sources\c99\common\ftadd.c
+[v ___ftadd __ftadd `(f  1 e 4 0 ]
+"54 C:\Program Files\Microchip\xc8\v2.31\pic\sources\c99\common\ftdiv.c
+[v ___ftdiv __ftdiv `(f  1 e 4 0 ]
+"62 C:\Program Files\Microchip\xc8\v2.31\pic\sources\c99\common\ftmul.c
+[v ___ftmul __ftmul `(f  1 e 4 0 ]
+"19 C:\Program Files\Microchip\xc8\v2.31\pic\sources\c99\common\ftsub.c
+[v ___ftsub __ftsub `(f  1 e 4 0 ]
+"7 C:\Program Files\Microchip\xc8\v2.31\pic\sources\c99\common\lwdiv.c
+[v ___lwdiv __lwdiv `(ui  1 e 2 0 ]
+"7 C:\Program Files\Microchip\xc8\v2.31\pic\sources\c99\common\lwmod.c
+[v ___lwmod __lwmod `(ui  1 e 2 0 ]
+"10 C:\Program Files\Microchip\xc8\v2.31\pic\sources\c99\common\sprcadd.c
+[v ___fladd __fladd `(d  1 e 4 0 ]
+"245
+[v ___flsub __flsub `(d  1 e 4 0 ]
+"11 C:\Program Files\Microchip\xc8\v2.31\pic\sources\c99\common\sprcdiv.c
+[v ___fldiv __fldiv `(d  1 e 4 0 ]
+"8 C:\Program Files\Microchip\xc8\v2.31\pic\sources\c99\common\sprcmul.c
+[v ___flmul __flmul `(d  1 e 4 0 ]
+"15 C:\Program Files\Microchip\xc8\v2.31\pic\sources\c99\common\Umul16.c
+[v ___wmul __wmul `(ui  1 e 2 0 ]
+"15 C:\Program Files\Microchip\xc8\v2.31\pic\sources\c99\common\Umul32.c
+[v ___lmul __lmul `(ul  1 e 4 0 ]
+"91 C:\Program Files\Microchip\xc8\v2.31\pic\sources\c99\common\Umul64.c
+[v ___omul __omul `(uo  1 e 8 0 ]
+"25 D:\Disciplinas\Embarcados\Exercicios\snake_game.X\game.c
+[v _random random `(ui  1 e 2 0 ]
+"31
+[v _replaceFood replaceFood `(v  1 e 1 0 ]
+"36
+[v _addPoint addPoint `(v  1 e 1 0 ]
+"47
+[v _resetPoints resetPoints `(v  1 e 1 0 ]
+"61
+[v _gameInit gameInit `(v  1 e 1 0 ]
+"70
+[v _newGame newGame `(v  1 e 1 0 ]
+"92
+[v _gameStart gameStart `(v  1 e 1 0 ]
+"97
+[v _updateSnake updateSnake `(v  1 e 1 0 ]
+"122
+[v _gameOver gameOver `(v  1 e 1 0 ]
+"142
+[v _readSerialController readSerialController `(uc  1 e 1 0 ]
+"153
+[v _readInput readInput `(uc  1 e 1 0 ]
+"186
+[v _checkFood checkFood `(v  1 e 1 0 ]
+"202
+[v _checkCollision checkCollision `(uc  1 e 1 0 ]
+"211
+[v _gameUpdate gameUpdate `(uc  1 e 1 0 ]
+"14 D:\Disciplinas\Embarcados\Exercicios\snake_game.X\io.c
+[v _digitalWrite digitalWrite `(v  1 e 1 0 ]
+"39
+[v _digitalRead digitalRead `(i  1 e 2 0 ]
+"54
+[v _pinMode pinMode `(v  1 e 1 0 ]
+"19 D:\Disciplinas\Embarcados\Exercicios\snake_game.X\keypad.c
+[v _kpReadKey kpReadKey `(uc  1 e 1 0 ]
+"30
+[v _kpReadKeyDown kpReadKeyDown `(uc  1 e 1 0 ]
+"39
+[v _kpDebounce kpDebounce `(v  1 e 1 0 ]
+"67
+[v _kpInit kpInit `(v  1 e 1 0 ]
+"5 D:\Disciplinas\Embarcados\Exercicios\snake_game.X\lcd.c
+[v _delayMicro delayMicro `(v  1 e 1 0 ]
+"10
+[v _delayMili delayMili `(v  1 e 1 0 ]
+"18
+[v _pulseEnablePin pulseEnablePin `(v  1 e 1 0 ]
+"25
+[v _pushNibble pushNibble `(v  1 e 1 0 ]
+"31
+[v _pushByte pushByte `(v  1 e 1 0 ]
+"40
+[v _lcdCommand lcdCommand `(v  1 e 1 0 ]
+"44
+[v _lcdPosition lcdPosition `(v  1 e 1 0 ]
+"52
+[v _lcdChar lcdChar `(v  1 e 1 0 ]
+"57
+[v _lcdString lcdString `(v  1 e 1 0 ]
+"72
+[v _lcdInit lcdInit `(v  1 e 1 0 ]
+"10 D:\Disciplinas\Embarcados\Exercicios\snake_game.X\main.c
+[v _displayMenuOption displayMenuOption `(v  1 e 1 0 ]
+"33
+[v _displayMenu displayMenu `(v  1 e 1 0 ]
+"42
+[v _menuUpdate menuUpdate `(uc  1 e 1 0 ]
+"88
+[v _main main `(v  1 e 1 0 ]
+"15 D:\Disciplinas\Embarcados\Exercicios\snake_game.X\mixer.c
+[v _mixerInit mixerInit `(v  1 e 1 0 ]
+"26
+[v _mixerRestart mixerRestart `(v  1 e 1 0 ]
+"33
+[v _mixerSetOutput mixerSetOutput `(v  1 e 1 0 ]
+"37
+[v _mixerGetOutput mixerGetOutput `(uc  1 e 1 0 ]
+"41
+[v _startNote startNote `(v  1 e 1 0 ]
+"50
+[v _stopNote stopNote `(v  1 e 1 0 ]
+"58
+[v _mixerStop mixerStop `(v  1 e 1 0 ]
+"62
+[v _mixerUpdate mixerUpdate `(v  1 e 1 0 ]
+"87
+[v _mixerNextSong mixerNextSong `(v  1 e 1 0 ]
+"92
+[v _mixerGetSongName mixerGetSongName `(*.39uc  1 e 2 0 ]
+"24 D:\Disciplinas\Embarcados\Exercicios\snake_game.X\pwm.c
+[v _pwmSet pwmSet `(v  1 e 1 0 ]
+"44
+[v _pwmFrequency pwmFrequency `(v  1 e 1 0 ]
+"51
+[v _pwmInit pwmInit `(v  1 e 1 0 ]
+"7 D:\Disciplinas\Embarcados\Exercicios\snake_game.X\renderer.c
+[v _setPixel setPixel `(v  1 e 1 0 ]
+"31
+[v _displayScreen displayScreen `(v  1 e 1 0 ]
+"43
+[v _cleanScreean cleanScreean `(v  1 e 1 0 ]
+"51
+[v _rendererInit rendererInit `(v  1 e 1 0 ]
+"63
+[v _rendererStart rendererStart `(v  1 e 1 0 ]
+"25 D:\Disciplinas\Embarcados\Exercicios\snake_game.X\serial.c
+[v _serialSend serialSend `(v  1 e 1 0 ]
+"30
+[v _serialRead serialRead `(uc  1 e 1 0 ]
+"48
+[v _serialInit serialInit `(v  1 e 1 0 ]
+"3 D:\Disciplinas\Embarcados\Exercicios\snake_game.X\so.c
+[v _soInit soInit `(v  1 e 1 0 ]
+"9
+[v _PulseEnClock PulseEnClock `(v  1 e 1 0 ]
+"14
+[v _PulseClockData PulseClockData `(v  1 e 1 0 ]
+"18
+[v _soWrite soWrite `(v  1 e 1 0 ]
+"31 D:\Disciplinas\Embarcados\Exercicios\snake_game.X\timer.c
+[v _timerWait timerWait `(v  1 e 1 0 ]
+"41
+[v _timerReset timerReset `(v  1 e 1 0 ]
+"59
+[v _timerInit timerInit `(v  1 e 1 0 ]
+"11 D:\Disciplinas\Embarcados\Exercicios\snake_game.X/songs.h
+[v _notes_freq notes_freq `C[30]ui  1 e 60 0 ]
+[s S366 . 21 `[15]uc 1 name 15 0 `*.25uc 1 size 2 15 `*.25uc 1 notes 2 17 `*.25uc 1 duration 2 19 ]
+"13
+[v _pacman_song pacman_song `S366  1 e 21 0 ]
+"14
+[v _tetris_song tetris_song `S366  1 e 21 0 ]
+"15
+[v _sw_song sw_song `S366  1 e 21 0 ]
+"52 D:/Programas/MPLABX/packs/Microchip/PIC18Fxxxx_DFP/1.2.26/xc8\pic\include\proc\pic18f4520.h
+[v _PORTA PORTA `VEuc  1 e 1 @3968 ]
+"271
+[v _PORTB PORTB `VEuc  1 e 1 @3969 ]
+"450
+[v _PORTC PORTC `VEuc  1 e 1 @3970 ]
+"632
+[v _PORTD PORTD `VEuc  1 e 1 @3971 ]
+"774
+[v _PORTE PORTE `VEuc  1 e 1 @3972 ]
+"1477
+[v _TRISA TRISA `VEuc  1 e 1 @3986 ]
+"1699
+[v _TRISB TRISB `VEuc  1 e 1 @3987 ]
+"1921
+[v _TRISC TRISC `VEuc  1 e 1 @3988 ]
+"2143
+[v _TRISD TRISD `VEuc  1 e 1 @3989 ]
+"2365
+[v _TRISE TRISE `VEuc  1 e 1 @3990 ]
+"2671
+[v _PIR1 PIR1 `VEuc  1 e 1 @3998 ]
+"3110
+[v _RCSTA RCSTA `VEuc  1 e 1 @4011 ]
+"3320
+[v _TXSTA TXSTA `VEuc  1 e 1 @4012 ]
+"3576
+[v _TXREG TXREG `VEuc  1 e 1 @4013 ]
+"3588
+[v _RCREG RCREG `VEuc  1 e 1 @4014 ]
+"3600
+[v _SPBRG SPBRG `VEuc  1 e 1 @4015 ]
+"3612
+[v _SPBRGH SPBRGH `VEuc  1 e 1 @4016 ]
+"4221
+[v _BAUDCON BAUDCON `VEuc  1 e 1 @4024 ]
+"4401
+[v _CCP2CON CCP2CON `VEuc  1 e 1 @4026 ]
+"4487
+[v _CCPR2L CCPR2L `VEuc  1 e 1 @4027 ]
+"4690
+[v _ADCON1 ADCON1 `VEuc  1 e 1 @4033 ]
+"5315
+[v _T2CON T2CON `VEuc  1 e 1 @4042 ]
+"5413
+[v _PR2 PR2 `VEuc  1 e 1 @4043 ]
+"6168
+[v _T0CON T0CON `VEuc  1 e 1 @4053 ]
+"6258
+[v _TMR0L TMR0L `VEuc  1 e 1 @4054 ]
+"6265
+[v _TMR0H TMR0H `VEuc  1 e 1 @4055 ]
+"6692
+[v _INTCON INTCON `VEuc  1 e 1 @4082 ]
+[s S491 . 2 `uc 1 x 1 0 `uc 1 y 1 1 ]
+"17 D:\Disciplinas\Embarcados\Exercicios\snake_game.X\game.c
+[v _snake snake `[21]S491  1 e 42 0 ]
+"18
+[v _food food `S491  1 e 2 0 ]
+"19
+[v _snake_size snake_size `uc  1 e 1 0 ]
+"20
+[v _moving moving `uc  1 e 1 0 ]
+[v _direction direction `uc  1 e 1 0 ]
+"21
+[v _count count `uc  1 e 1 0 ]
+"22
+[v _points points `[3]uc  1 e 3 0 ]
+"23
+[v _random_seed random_seed `ui  1 e 2 0 ]
+"6 D:\Disciplinas\Embarcados\Exercicios\snake_game.X\keypad.c
+[v _keys keys `ui  1 s 2 keys ]
+"7
+[v _last_key last_key `uc  1 s 1 last_key ]
+"13
+[v _charKey charKey `C[10]uc  1 s 10 charKey ]
+"8 D:\Disciplinas\Embarcados\Exercicios\snake_game.X\main.c
+[v _status status `uc  1 e 1 0 ]
+[v _menu_opt menu_opt `uc  1 e 1 0 ]
+"8 D:\Disciplinas\Embarcados\Exercicios\snake_game.X\mixer.c
+[v _current_note current_note `uc  1 e 1 0 ]
+[v _note_time note_time `uc  1 e 1 0 ]
+[v _pause_time pause_time `uc  1 e 1 0 ]
+[v _playing_note playing_note `uc  1 e 1 0 ]
+"10
+[v _song song `S366  1 e 21 0 ]
+"11
+[v _playlist playlist `[3]S366  1 e 63 0 ]
+"12
+[v _song_idx song_idx `uc  1 e 1 0 ]
+"13
+[v _mixer_output mixer_output `uc  1 e 1 0 ]
+"5 D:\Disciplinas\Embarcados\Exercicios\snake_game.X\renderer.c
+[v _screen screen `[48]uc  1 e 48 0 ]
+"14 D:\Disciplinas\Embarcados\Exercicios\snake_game.X\songs.c
+[v _pacman_song_size pacman_song_size `Cuc  1 e 1 0 ]
+"15
+[v _pacman_notes pacman_notes `C[31]uc  1 e 31 0 ]
+"21
+[v _pacman_duration pacman_duration `C[31]uc  1 e 31 0 ]
+"25
+[v _tetris_song_size tetris_song_size `Cuc  1 e 1 0 ]
+"26
+[v _tetris_notes tetris_notes `C[99]uc  1 e 99 0 ]
+"41
+[v _tetris_duration tetris_duration `C[99]uc  1 e 99 0 ]
+"50
+[v _sw_song_size sw_song_size `Cuc  1 e 1 0 ]
+"51
+[v _sw_notes sw_notes `C[88]uc  1 e 88 0 ]
+"65
+[v _sw_duration sw_duration `C[88]uc  1 e 88 0 ]
+"88 D:\Disciplinas\Embarcados\Exercicios\snake_game.X\main.c
+[v _main main `(v  1 e 1 0 ]
+{
+"108
+} 0
+"42
+[v _menuUpdate menuUpdate `(uc  1 e 1 0 ]
+{
+"43
+[v menuUpdate@key key `uc  1 a 1 27 ]
+"86
+} 0
+"33 D:\Disciplinas\Embarcados\Exercicios\snake_game.X\mixer.c
+[v _mixerSetOutput mixerSetOutput `(v  1 e 1 0 ]
+{
+[v mixerSetOutput@out out `uc  1 a 1 wreg ]
+[v mixerSetOutput@out out `uc  1 a 1 wreg ]
+[v mixerSetOutput@out out `uc  1 a 1 0 ]
+"35
+} 0
+"87
+[v _mixerNextSong mixerNextSong `(v  1 e 1 0 ]
+{
+"90
+} 0
+"33 D:\Disciplinas\Embarcados\Exercicios\snake_game.X\main.c
+[v _displayMenu displayMenu `(v  1 e 1 0 ]
+{
+"40
+} 0
+"10
+[v _displayMenuOption displayMenuOption `(v  1 e 1 0 ]
+{
+[v displayMenuOption@opt opt `uc  1 a 1 wreg ]
+[v displayMenuOption@opt opt `uc  1 a 1 wreg ]
+[v displayMenuOption@opt opt `uc  1 a 1 22 ]
+"31
+} 0
+"92 D:\Disciplinas\Embarcados\Exercicios\snake_game.X\mixer.c
+[v _mixerGetSongName mixerGetSongName `(*.39uc  1 e 2 0 ]
+{
+"94
+} 0
+"37
+[v _mixerGetOutput mixerGetOutput `(uc  1 e 1 0 ]
+{
+"39
+} 0
+"211 D:\Disciplinas\Embarcados\Exercicios\snake_game.X\game.c
+[v _gameUpdate gameUpdate `(uc  1 e 1 0 ]
+{
+"253
+} 0
+"97
+[v _updateSnake updateSnake `(v  1 e 1 0 ]
+{
+"98
+[v updateSnake@i i `uc  1 a 1 8 ]
+"120
+} 0
+"7 C:\Program Files\Microchip\xc8\v2.31\pic\sources\c99\common\awmod.c
+[v ___awmod __awmod `(i  1 e 2 0 ]
+{
+"10
+[v ___awmod@sign sign `uc  1 a 1 5 ]
+[v ___awmod@counter counter `uc  1 a 1 4 ]
+"7
+[v ___awmod@dividend dividend `i  1 p 2 0 ]
+[v ___awmod@divisor divisor `i  1 p 2 2 ]
+"34
+} 0
+"153 D:\Disciplinas\Embarcados\Exercicios\snake_game.X\game.c
+[v _readInput readInput `(uc  1 e 1 0 ]
+{
+"156
+[v readInput@key key `uc  1 a 1 26 ]
+"184
+} 0
+"142
+[v _readSerialController readSerialController `(uc  1 e 1 0 ]
+{
+"144
+[v readSerialController@key key `uc  1 a 1 1 ]
+"143
+[v readSerialController@last_key last_key `uc  1 s 1 last_key ]
+"151
+} 0
+"30 D:\Disciplinas\Embarcados\Exercicios\snake_game.X\serial.c
+[v _serialRead serialRead `(uc  1 e 1 0 ]
+{
+"31
+[v serialRead@resp resp `uc  1 a 1 0 ]
+"46
+} 0
+"58 D:\Disciplinas\Embarcados\Exercicios\snake_game.X\mixer.c
+[v _mixerStop mixerStop `(v  1 e 1 0 ]
+{
+"60
+} 0
+"30 D:\Disciplinas\Embarcados\Exercicios\snake_game.X\keypad.c
+[v _kpReadKeyDown kpReadKeyDown `(uc  1 e 1 0 ]
+{
+"31
+[v kpReadKeyDown@key key `uc  1 a 1 5 ]
+"37
+} 0
+"19
+[v _kpReadKey kpReadKey `(uc  1 e 1 0 ]
+{
+"20
+[v kpReadKey@i i `i  1 a 2 3 ]
+"28
+} 0
+"62 D:\Disciplinas\Embarcados\Exercicios\snake_game.X\mixer.c
+[v _mixerUpdate mixerUpdate `(v  1 e 1 0 ]
+{
+"85
+} 0
+"50
+[v _stopNote stopNote `(v  1 e 1 0 ]
+{
+"56
+} 0
+"41
+[v _startNote startNote `(v  1 e 1 0 ]
+{
+[v startNote@note note `uc  1 a 1 wreg ]
+[v startNote@note note `uc  1 a 1 wreg ]
+[v startNote@note note `uc  1 a 1 16 ]
+"48
+} 0
+"25 D:\Disciplinas\Embarcados\Exercicios\snake_game.X\serial.c
+[v _serialSend serialSend `(v  1 e 1 0 ]
+{
+[v serialSend@c c `uc  1 a 1 wreg ]
+[v serialSend@c c `uc  1 a 1 wreg ]
+[v serialSend@c c `uc  1 a 1 0 ]
+"28
+} 0
+"24 D:\Disciplinas\Embarcados\Exercicios\snake_game.X\pwm.c
+[v _pwmSet pwmSet `(v  1 e 1 0 ]
+{
+[v pwmSet@porcento porcento `uc  1 a 1 wreg ]
+"31
+[v pwmSet@val val `ui  1 a 2 10 ]
+"24
+[v pwmSet@porcento porcento `uc  1 a 1 wreg ]
+"31
+[v pwmSet@porcento porcento `uc  1 a 1 9 ]
+"41
+} 0
+"7 C:\Program Files\Microchip\xc8\v2.31\pic\sources\c99\common\lwdiv.c
+[v ___lwdiv __lwdiv `(ui  1 e 2 0 ]
+{
+"10
+[v ___lwdiv@quotient quotient `ui  1 a 2 4 ]
+"11
+[v ___lwdiv@counter counter `uc  1 a 1 6 ]
+"7
+[v ___lwdiv@dividend dividend `ui  1 p 2 0 ]
+[v ___lwdiv@divisor divisor `ui  1 p 2 2 ]
+"30
+} 0
+"39 D:\Disciplinas\Embarcados\Exercicios\snake_game.X\keypad.c
+[v _kpDebounce kpDebounce `(v  1 e 1 0 ]
+{
+"40
+[v kpDebounce@i i `i  1 a 2 12 ]
+"41
+[v kpDebounce@tempo tempo `uc  1 s 1 tempo ]
+"42
+[v kpDebounce@newRead newRead `ui  1 s 2 newRead ]
+"43
+[v kpDebounce@oldRead oldRead `ui  1 s 2 oldRead ]
+"64
+} 0
+"39 D:\Disciplinas\Embarcados\Exercicios\snake_game.X\io.c
+[v _digitalRead digitalRead `(i  1 e 2 0 ]
+{
+[v digitalRead@pin pin `i  1 p 2 0 ]
+"52
+} 0
+"122 D:\Disciplinas\Embarcados\Exercicios\snake_game.X\game.c
+[v _gameOver gameOver `(v  1 e 1 0 ]
+{
+"135
+[v gameOver@i_559 i `i  1 a 2 20 ]
+"131
+[v gameOver@i i `i  1 a 2 22 ]
+"140
+} 0
+"31 D:\Disciplinas\Embarcados\Exercicios\snake_game.X\timer.c
+[v _timerWait timerWait `(v  1 e 1 0 ]
+{
+"34
+} 0
+"41
+[v _timerReset timerReset `(v  1 e 1 0 ]
+{
+"43
+[v timerReset@ciclos ciclos `ui  1 a 2 2 ]
+"41
+[v timerReset@tempo tempo `ui  1 p 2 0 ]
+"57
+} 0
+"186 D:\Disciplinas\Embarcados\Exercicios\snake_game.X\game.c
+[v _checkFood checkFood `(v  1 e 1 0 ]
+{
+"200
+} 0
+"36
+[v _addPoint addPoint `(v  1 e 1 0 ]
+{
+"39
+[v addPoint@i i `i  1 a 2 1 ]
+"45
+} 0
+"202
+[v _checkCollision checkCollision `(uc  1 e 1 0 ]
+{
+"203
+[v checkCollision@i i `i  1 a 2 3 ]
+"209
+} 0
+"92
+[v _gameStart gameStart `(v  1 e 1 0 ]
+{
+"95
+} 0
+"63 D:\Disciplinas\Embarcados\Exercicios\snake_game.X\renderer.c
+[v _rendererStart rendererStart `(v  1 e 1 0 ]
+{
+"73
+} 0
+"57 D:\Disciplinas\Embarcados\Exercicios\snake_game.X\lcd.c
+[v _lcdString lcdString `(v  1 e 1 0 ]
+{
+"58
+[v lcdString@i i `i  1 a 2 18 ]
+"57
+[v lcdString@msg msg `*.35uc  1 p 2 14 ]
+"63
+} 0
+"31 D:\Disciplinas\Embarcados\Exercicios\snake_game.X\renderer.c
+[v _displayScreen displayScreen `(v  1 e 1 0 ]
+{
+"41
+} 0
+"44 D:\Disciplinas\Embarcados\Exercicios\snake_game.X\lcd.c
+[v _lcdPosition lcdPosition `(v  1 e 1 0 ]
+{
+[v lcdPosition@line line `i  1 p 2 14 ]
+[v lcdPosition@col col `i  1 p 2 16 ]
+"51
+} 0
+"26 D:\Disciplinas\Embarcados\Exercicios\snake_game.X\mixer.c
+[v _mixerRestart mixerRestart `(v  1 e 1 0 ]
+{
+"31
+} 0
+"61 D:\Disciplinas\Embarcados\Exercicios\snake_game.X\game.c
+[v _gameInit gameInit `(v  1 e 1 0 ]
+{
+"68
+} 0
+"59 D:\Disciplinas\Embarcados\Exercicios\snake_game.X\timer.c
+[v _timerInit timerInit `(v  1 e 1 0 ]
+{
+"63
+} 0
+"51 D:\Disciplinas\Embarcados\Exercicios\snake_game.X\renderer.c
+[v _rendererInit rendererInit `(v  1 e 1 0 ]
+{
+"58
+[v rendererInit@i i `uc  1 a 1 25 ]
+"61
+} 0
+"72 D:\Disciplinas\Embarcados\Exercicios\snake_game.X\lcd.c
+[v _lcdInit lcdInit `(v  1 e 1 0 ]
+{
+"91
+} 0
+"25
+[v _pushNibble pushNibble `(v  1 e 1 0 ]
+{
+[v pushNibble@value value `uc  1 a 1 wreg ]
+[v pushNibble@value value `uc  1 a 1 wreg ]
+[v pushNibble@rs rs `i  1 p 2 9 ]
+[v pushNibble@value value `uc  1 a 1 11 ]
+"29
+} 0
+"70 D:\Disciplinas\Embarcados\Exercicios\snake_game.X\game.c
+[v _newGame newGame `(v  1 e 1 0 ]
+{
+"90
+} 0
+"47
+[v _resetPoints resetPoints `(v  1 e 1 0 ]
+{
+"48
+[v resetPoints@i i `i  1 a 2 0 ]
+"51
+} 0
+"31
+[v _replaceFood replaceFood `(v  1 e 1 0 ]
+{
+"34
+} 0
+"25
+[v _random random `(ui  1 e 2 0 ]
+{
+"29
+} 0
+"15 C:\Program Files\Microchip\xc8\v2.31\pic\sources\c99\common\Umul16.c
+[v ___wmul __wmul `(ui  1 e 2 0 ]
+{
+"17
+[v ___wmul@product product `ui  1 a 2 4 ]
+"15
+[v ___wmul@multiplier multiplier `ui  1 p 2 0 ]
+[v ___wmul@multiplicand multiplicand `ui  1 p 2 2 ]
+"53
+} 0
+"7 C:\Program Files\Microchip\xc8\v2.31\pic\sources\c99\common\lwmod.c
+[v ___lwmod __lwmod `(ui  1 e 2 0 ]
+{
+"10
+[v ___lwmod@counter counter `uc  1 a 1 14 ]
+"7
+[v ___lwmod@dividend dividend `ui  1 p 2 10 ]
+[v ___lwmod@divisor divisor `ui  1 p 2 12 ]
+"25
+} 0
+"43 D:\Disciplinas\Embarcados\Exercicios\snake_game.X\renderer.c
+[v _cleanScreean cleanScreean `(v  1 e 1 0 ]
+{
+"45
+[v cleanScreean@y y `uc  1 a 1 24 ]
+"44
+[v cleanScreean@x x `uc  1 a 1 23 ]
+"49
+} 0
+"7
+[v _setPixel setPixel `(v  1 e 1 0 ]
+{
+[v setPixel@x x `uc  1 a 1 wreg ]
+"8
+[v setPixel@i i `i  1 a 2 20 ]
+"9
+[v setPixel@x_ x_ `uc  1 a 1 19 ]
+"7
+[v setPixel@x x `uc  1 a 1 wreg ]
+[v setPixel@y y `uc  1 p 1 14 ]
+[v setPixel@val val `uc  1 p 1 15 ]
+[v setPixel@x x `uc  1 a 1 22 ]
+"29
+} 0
+"40 D:\Disciplinas\Embarcados\Exercicios\snake_game.X\lcd.c
+[v _lcdCommand lcdCommand `(v  1 e 1 0 ]
+{
+[v lcdCommand@value value `uc  1 a 1 wreg ]
+[v lcdCommand@value value `uc  1 a 1 wreg ]
+[v lcdCommand@value value `uc  1 a 1 13 ]
+"43
+} 0
+"10
+[v _delayMili delayMili `(v  1 e 1 0 ]
+{
+"11
+[v delayMili@i i `VEi  1 a 2 3 ]
+"10
+[v delayMili@a a `i  1 p 2 0 ]
+"16
+} 0
+"52
+[v _lcdChar lcdChar `(v  1 e 1 0 ]
+{
+[v lcdChar@value value `uc  1 a 1 wreg ]
+[v lcdChar@value value `uc  1 a 1 wreg ]
+[v lcdChar@value value `uc  1 a 1 13 ]
+"55
+} 0
+"31
+[v _pushByte pushByte `(v  1 e 1 0 ]
+{
+[v pushByte@value value `uc  1 a 1 wreg ]
+[v pushByte@value value `uc  1 a 1 wreg ]
+[v pushByte@rs rs `i  1 p 2 9 ]
+[v pushByte@value value `uc  1 a 1 12 ]
+"39
+} 0
+"18 D:\Disciplinas\Embarcados\Exercicios\snake_game.X\so.c
+[v _soWrite soWrite `(v  1 e 1 0 ]
+{
+"19
+[v soWrite@i i `uc  1 a 1 8 ]
+"18
+[v soWrite@value value `i  1 p 2 6 ]
+"27
+} 0
+"9
+[v _PulseEnClock PulseEnClock `(v  1 e 1 0 ]
+{
+"12
+} 0
+"14
+[v _PulseClockData PulseClockData `(v  1 e 1 0 ]
+{
+"17
+} 0
+"18 D:\Disciplinas\Embarcados\Exercicios\snake_game.X\lcd.c
+[v _pulseEnablePin pulseEnablePin `(v  1 e 1 0 ]
+{
+"23
+} 0
+"14 D:\Disciplinas\Embarcados\Exercicios\snake_game.X\io.c
+[v _digitalWrite digitalWrite `(v  1 e 1 0 ]
+{
+[v digitalWrite@pin pin `i  1 p 2 0 ]
+[v digitalWrite@value value `i  1 p 2 2 ]
+"38
+} 0
+"5 D:\Disciplinas\Embarcados\Exercicios\snake_game.X\lcd.c
+[v _delayMicro delayMicro `(v  1 e 1 0 ]
+{
+[v delayMicro@a a `i  1 p 2 0 ]
+"9
+} 0
+"15 D:\Disciplinas\Embarcados\Exercicios\snake_game.X\mixer.c
+[v _mixerInit mixerInit `(v  1 e 1 0 ]
+{
+"24
+} 0
+"48 D:\Disciplinas\Embarcados\Exercicios\snake_game.X\serial.c
+[v _serialInit serialInit `(v  1 e 1 0 ]
+{
+"56
+} 0
+"51 D:\Disciplinas\Embarcados\Exercicios\snake_game.X\pwm.c
+[v _pwmInit pwmInit `(v  1 e 1 0 ]
+{
+"61
+} 0
+"44
+[v _pwmFrequency pwmFrequency `(v  1 e 1 0 ]
+{
+[v pwmFrequency@freq freq `ui  1 p 2 14 ]
+"49
+} 0
+"7 C:\Program Files\Microchip\xc8\v2.31\pic\sources\c99\common\aldiv.c
+[v ___aldiv __aldiv `(l  1 e 4 0 ]
+{
+"10
+[v ___aldiv@quotient quotient `l  1 a 4 10 ]
+"11
+[v ___aldiv@sign sign `uc  1 a 1 9 ]
+[v ___aldiv@counter counter `uc  1 a 1 8 ]
+"7
+[v ___aldiv@dividend dividend `l  1 p 4 0 ]
+[v ___aldiv@divisor divisor `l  1 p 4 4 ]
+"41
+} 0
+"67 D:\Disciplinas\Embarcados\Exercicios\snake_game.X\keypad.c
+[v _kpInit kpInit `(v  1 e 1 0 ]
+{
+"72
+} 0
+"3 D:\Disciplinas\Embarcados\Exercicios\snake_game.X\so.c
+[v _soInit soInit `(v  1 e 1 0 ]
+{
+"7
+} 0
+"54 D:\Disciplinas\Embarcados\Exercicios\snake_game.X\io.c
+[v _pinMode pinMode `(v  1 e 1 0 ]
+{
+[v pinMode@pin pin `i  1 p 2 0 ]
+[v pinMode@type type `i  1 p 2 2 ]
+"73
+} 0

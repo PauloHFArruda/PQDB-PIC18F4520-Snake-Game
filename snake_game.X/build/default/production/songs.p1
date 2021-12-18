@@ -1,0 +1,654 @@
+Version 4.0 HI-TECH Software Intermediate Code
+"4 ./songs.h
+[; ;./songs.h: 4:     typedef struct {
+[s S1 `uc -> 15 `i `*uc 1 `*uc 1 `*uc 1 ]
+[n S1 . name size notes duration ]
+"15 songs.c
+[; ;songs.c: 15: const unsigned char pacman_notes[] = {NOTE_B4, NOTE_B5, NOTE_FS5,
+[c E12 0 1 2 3 4 5 6 7 8 9 10 11 12 13 14 15 16 17 18 19 20 21 22 23 24 25 26 27 28 29 .. ]
+[n E12 notes NOTE_F4 NOTE_FS4 NOTE_G4 NOTE_GS4 NOTE_A4 NOTE_AS4 NOTE_B4 NOTE_C5 NOTE_CS5 NOTE_D5 NOTE_DS5 NOTE_E5 NOTE_F5 NOTE_FS5 NOTE_G5 NOTE_GS5 NOTE_A5 NOTE_AS5 NOTE_B5 NOTE_C6 NOTE_CS6 NOTE_D6 NOTE_DS6 NOTE_E6 NOTE_F6 NOTE_FS6 NOTE_G6 NOTE_GS6 NOTE_A6 REST  ]
+"11 ./songs.h
+[; ;./songs.h: 11:     const unsigned int notes_freq[30];
+[v _notes_freq `Cui ~T0 @X0 -> 30 `i e ]
+[i _notes_freq
+:U ..
+-> -> 0 `i `Cui
+-> -> 0 `i `Cui
+-> -> 0 `i `Cui
+-> -> 0 `i `Cui
+-> -> 0 `i `Cui
+-> -> 0 `i `Cui
+-> -> 0 `i `Cui
+-> -> 0 `i `Cui
+-> -> 0 `i `Cui
+-> -> 0 `i `Cui
+-> -> 0 `i `Cui
+-> -> 0 `i `Cui
+-> -> 0 `i `Cui
+-> -> 0 `i `Cui
+-> -> 0 `i `Cui
+-> -> 0 `i `Cui
+-> -> 0 `i `Cui
+-> -> 0 `i `Cui
+-> -> 0 `i `Cui
+-> -> 0 `i `Cui
+-> -> 0 `i `Cui
+-> -> 0 `i `Cui
+-> -> 0 `i `Cui
+-> -> 0 `i `Cui
+-> -> 0 `i `Cui
+-> -> 0 `i `Cui
+-> -> 0 `i `Cui
+-> -> 0 `i `Cui
+-> -> 0 `i `Cui
+-> -> 0 `i `Cui
+..
+]
+"13
+[; ;./songs.h: 13:     Song pacman_song;
+[v _pacman_song `S1 ~T0 @X0 1 e ]
+"14
+[; ;./songs.h: 14:     Song tetris_song;
+[v _tetris_song `S1 ~T0 @X0 1 e ]
+"15
+[; ;./songs.h: 15:     Song sw_song;
+[v _sw_song `S1 ~T0 @X0 1 e ]
+"9 songs.c
+[; ;songs.c: 9: const unsigned int notes_freq[30] = {349, 370, 392, 415, 440, 466,
+[v _notes_freq `Cui ~T0 @X0 -> 30 `i e ]
+[i _notes_freq
+:U ..
+-> -> 349 `i `ui
+-> -> 370 `i `ui
+-> -> 392 `i `ui
+-> -> 415 `i `ui
+-> -> 440 `i `ui
+-> -> 466 `i `ui
+-> -> 494 `i `ui
+-> -> 523 `i `ui
+-> -> 554 `i `ui
+-> -> 587 `i `ui
+-> -> 622 `i `ui
+-> -> 659 `i `ui
+-> -> 698 `i `ui
+-> -> 740 `i `ui
+-> -> 784 `i `ui
+-> -> 831 `i `ui
+-> -> 880 `i `ui
+-> -> 932 `i `ui
+-> -> 988 `i `ui
+-> -> 1047 `i `ui
+-> -> 1109 `i `ui
+-> -> 1175 `i `ui
+-> -> 1245 `i `ui
+-> -> 1319 `i `ui
+-> -> 1397 `i `ui
+-> -> 1480 `i `ui
+-> -> 1568 `i `ui
+-> -> 1661 `i `ui
+-> -> 1760 `i `ui
+-> -> 100000 `l `ui
+..
+]
+"14
+[; ;songs.c: 14: const unsigned char pacman_song_size = 31;
+[v _pacman_song_size `Cuc ~T0 @X0 1 e ]
+[i _pacman_song_size
+-> -> 31 `i `uc
+]
+"15
+[; ;songs.c: 15: const unsigned char pacman_notes[] = {NOTE_B4, NOTE_B5, NOTE_FS5,
+[v _pacman_notes `Cuc ~T0 @X0 -> 31 `i e ]
+[i _pacman_notes
+:U ..
+-> . `E12 6 `uc
+-> . `E12 18 `uc
+-> . `E12 13 `uc
+-> . `E12 10 `uc
+-> . `E12 18 `uc
+-> . `E12 13 `uc
+-> . `E12 10 `uc
+-> . `E12 7 `uc
+-> . `E12 19 `uc
+-> . `E12 26 `uc
+-> . `E12 23 `uc
+-> . `E12 19 `uc
+-> . `E12 26 `uc
+-> . `E12 23 `uc
+-> . `E12 6 `uc
+-> . `E12 18 `uc
+-> . `E12 13 `uc
+-> . `E12 10 `uc
+-> . `E12 18 `uc
+-> . `E12 13 `uc
+-> . `E12 10 `uc
+-> . `E12 10 `uc
+-> . `E12 11 `uc
+-> . `E12 12 `uc
+-> . `E12 12 `uc
+-> . `E12 13 `uc
+-> . `E12 14 `uc
+-> . `E12 14 `uc
+-> . `E12 15 `uc
+-> . `E12 16 `uc
+-> . `E12 18 `uc
+..
+]
+"21
+[; ;songs.c: 21: const unsigned char pacman_duration[] = {15, 15, 15, 15, 8, 23,
+[v _pacman_duration `Cuc ~T0 @X0 -> 31 `i e ]
+[i _pacman_duration
+:U ..
+-> -> 15 `i `uc
+-> -> 15 `i `uc
+-> -> 15 `i `uc
+-> -> 15 `i `uc
+-> -> 8 `i `uc
+-> -> 23 `i `uc
+-> -> 30 `i `uc
+-> -> 15 `i `uc
+-> -> 15 `i `uc
+-> -> 15 `i `uc
+-> -> 15 `i `uc
+-> -> 8 `i `uc
+-> -> 23 `i `uc
+-> -> 30 `i `uc
+-> -> 15 `i `uc
+-> -> 15 `i `uc
+-> -> 15 `i `uc
+-> -> 15 `i `uc
+-> -> 8 `i `uc
+-> -> 23 `i `uc
+-> -> 30 `i `uc
+-> -> 8 `i `uc
+-> -> 8 `i `uc
+-> -> 8 `i `uc
+-> -> 8 `i `uc
+-> -> 8 `i `uc
+-> -> 8 `i `uc
+-> -> 8 `i `uc
+-> -> 8 `i `uc
+-> -> 15 `i `uc
+-> -> 30 `i `uc
+..
+]
+"25
+[; ;songs.c: 25: const unsigned char tetris_song_size = 99;
+[v _tetris_song_size `Cuc ~T0 @X0 1 e ]
+[i _tetris_song_size
+-> -> 99 `i `uc
+]
+"26
+[; ;songs.c: 26: const unsigned char tetris_notes[] = {NOTE_E5, NOTE_B4, NOTE_C5,
+[v _tetris_notes `Cuc ~T0 @X0 -> 99 `i e ]
+[i _tetris_notes
+:U ..
+-> . `E12 11 `uc
+-> . `E12 6 `uc
+-> . `E12 7 `uc
+-> . `E12 9 `uc
+-> . `E12 7 `uc
+-> . `E12 6 `uc
+-> . `E12 4 `uc
+-> . `E12 4 `uc
+-> . `E12 7 `uc
+-> . `E12 11 `uc
+-> . `E12 9 `uc
+-> . `E12 7 `uc
+-> . `E12 6 `uc
+-> . `E12 7 `uc
+-> . `E12 9 `uc
+-> . `E12 11 `uc
+-> . `E12 7 `uc
+-> . `E12 4 `uc
+-> . `E12 4 `uc
+-> . `E12 4 `uc
+-> . `E12 6 `uc
+-> . `E12 7 `uc
+-> . `E12 9 `uc
+-> . `E12 12 `uc
+-> . `E12 16 `uc
+-> . `E12 14 `uc
+-> . `E12 12 `uc
+-> . `E12 11 `uc
+-> . `E12 7 `uc
+-> . `E12 11 `uc
+-> . `E12 9 `uc
+-> . `E12 7 `uc
+-> . `E12 6 `uc
+-> . `E12 6 `uc
+-> . `E12 7 `uc
+-> . `E12 9 `uc
+-> . `E12 11 `uc
+-> . `E12 7 `uc
+-> . `E12 4 `uc
+-> . `E12 4 `uc
+-> . `E12 29 `uc
+-> . `E12 11 `uc
+-> . `E12 6 `uc
+-> . `E12 7 `uc
+-> . `E12 9 `uc
+-> . `E12 7 `uc
+-> . `E12 6 `uc
+-> . `E12 4 `uc
+-> . `E12 4 `uc
+-> . `E12 7 `uc
+-> . `E12 11 `uc
+-> . `E12 9 `uc
+-> . `E12 7 `uc
+-> . `E12 6 `uc
+-> . `E12 7 `uc
+-> . `E12 9 `uc
+-> . `E12 11 `uc
+-> . `E12 7 `uc
+-> . `E12 4 `uc
+-> . `E12 4 `uc
+-> . `E12 4 `uc
+-> . `E12 6 `uc
+-> . `E12 7 `uc
+-> . `E12 9 `uc
+-> . `E12 12 `uc
+-> . `E12 16 `uc
+-> . `E12 14 `uc
+-> . `E12 12 `uc
+-> . `E12 11 `uc
+-> . `E12 7 `uc
+-> . `E12 11 `uc
+-> . `E12 9 `uc
+-> . `E12 7 `uc
+-> . `E12 6 `uc
+-> . `E12 6 `uc
+-> . `E12 7 `uc
+-> . `E12 9 `uc
+-> . `E12 11 `uc
+-> . `E12 7 `uc
+-> . `E12 4 `uc
+-> . `E12 4 `uc
+-> . `E12 29 `uc
+-> . `E12 11 `uc
+-> . `E12 7 `uc
+-> . `E12 9 `uc
+-> . `E12 6 `uc
+-> . `E12 7 `uc
+-> . `E12 4 `uc
+-> . `E12 3 `uc
+-> . `E12 6 `uc
+-> . `E12 29 `uc
+-> . `E12 11 `uc
+-> . `E12 7 `uc
+-> . `E12 9 `uc
+-> . `E12 6 `uc
+-> . `E12 7 `uc
+-> . `E12 11 `uc
+-> . `E12 16 `uc
+-> . `E12 15 `uc
+..
+]
+"41
+[; ;songs.c: 41: const unsigned char tetris_duration[] = {40, 20, 20, 40, 20,
+[v _tetris_duration `Cuc ~T0 @X0 -> 99 `i e ]
+[i _tetris_duration
+:U ..
+-> -> 40 `i `uc
+-> -> 20 `i `uc
+-> -> 20 `i `uc
+-> -> 40 `i `uc
+-> -> 20 `i `uc
+-> -> 20 `i `uc
+-> -> 40 `i `uc
+-> -> 20 `i `uc
+-> -> 20 `i `uc
+-> -> 40 `i `uc
+-> -> 20 `i `uc
+-> -> 20 `i `uc
+-> -> 60 `i `uc
+-> -> 20 `i `uc
+-> -> 40 `i `uc
+-> -> 40 `i `uc
+-> -> 40 `i `uc
+-> -> 40 `i `uc
+-> -> 20 `i `uc
+-> -> 40 `i `uc
+-> -> 20 `i `uc
+-> -> 20 `i `uc
+-> -> 60 `i `uc
+-> -> 20 `i `uc
+-> -> 40 `i `uc
+-> -> 20 `i `uc
+-> -> 20 `i `uc
+-> -> 60 `i `uc
+-> -> 20 `i `uc
+-> -> 40 `i `uc
+-> -> 20 `i `uc
+-> -> 20 `i `uc
+-> -> 40 `i `uc
+-> -> 20 `i `uc
+-> -> 20 `i `uc
+-> -> 40 `i `uc
+-> -> 40 `i `uc
+-> -> 40 `i `uc
+-> -> 40 `i `uc
+-> -> 40 `i `uc
+-> -> 40 `i `uc
+-> -> 40 `i `uc
+-> -> 20 `i `uc
+-> -> 20 `i `uc
+-> -> 40 `i `uc
+-> -> 20 `i `uc
+-> -> 20 `i `uc
+-> -> 40 `i `uc
+-> -> 20 `i `uc
+-> -> 20 `i `uc
+-> -> 40 `i `uc
+-> -> 20 `i `uc
+-> -> 20 `i `uc
+-> -> 60 `i `uc
+-> -> 20 `i `uc
+-> -> 40 `i `uc
+-> -> 40 `i `uc
+-> -> 40 `i `uc
+-> -> 40 `i `uc
+-> -> 20 `i `uc
+-> -> 40 `i `uc
+-> -> 20 `i `uc
+-> -> 20 `i `uc
+-> -> 60 `i `uc
+-> -> 20 `i `uc
+-> -> 40 `i `uc
+-> -> 20 `i `uc
+-> -> 20 `i `uc
+-> -> 60 `i `uc
+-> -> 20 `i `uc
+-> -> 40 `i `uc
+-> -> 20 `i `uc
+-> -> 20 `i `uc
+-> -> 40 `i `uc
+-> -> 20 `i `uc
+-> -> 20 `i `uc
+-> -> 40 `i `uc
+-> -> 40 `i `uc
+-> -> 40 `i `uc
+-> -> 40 `i `uc
+-> -> 40 `i `uc
+-> -> 40 `i `uc
+-> -> 80 `i `uc
+-> -> 80 `i `uc
+-> -> 80 `i `uc
+-> -> 80 `i `uc
+-> -> 80 `i `uc
+-> -> 80 `i `uc
+-> -> 80 `i `uc
+-> -> 40 `i `uc
+-> -> 20 `i `uc
+-> -> 80 `i `uc
+-> -> 80 `i `uc
+-> -> 80 `i `uc
+-> -> 80 `i `uc
+-> -> 40 `i `uc
+-> -> 40 `i `uc
+-> -> 80 `i `uc
+-> -> 80 `i `uc
+..
+]
+"50
+[; ;songs.c: 50: const unsigned char sw_song_size = 88;
+[v _sw_song_size `Cuc ~T0 @X0 1 e ]
+[i _sw_song_size
+-> -> 88 `i `uc
+]
+"51
+[; ;songs.c: 51: const unsigned char sw_notes[] = {NOTE_AS4, NOTE_AS4, NOTE_AS4,
+[v _sw_notes `Cuc ~T0 @X0 -> 88 `i e ]
+[i _sw_notes
+:U ..
+-> . `E12 5 `uc
+-> . `E12 5 `uc
+-> . `E12 5 `uc
+-> . `E12 12 `uc
+-> . `E12 19 `uc
+-> . `E12 17 `uc
+-> . `E12 16 `uc
+-> . `E12 14 `uc
+-> . `E12 24 `uc
+-> . `E12 19 `uc
+-> . `E12 17 `uc
+-> . `E12 16 `uc
+-> . `E12 14 `uc
+-> . `E12 24 `uc
+-> . `E12 19 `uc
+-> . `E12 17 `uc
+-> . `E12 16 `uc
+-> . `E12 17 `uc
+-> . `E12 14 `uc
+-> . `E12 7 `uc
+-> . `E12 7 `uc
+-> . `E12 7 `uc
+-> . `E12 12 `uc
+-> . `E12 19 `uc
+-> . `E12 17 `uc
+-> . `E12 16 `uc
+-> . `E12 14 `uc
+-> . `E12 24 `uc
+-> . `E12 19 `uc
+-> . `E12 17 `uc
+-> . `E12 16 `uc
+-> . `E12 14 `uc
+-> . `E12 24 `uc
+-> . `E12 19 `uc
+-> . `E12 17 `uc
+-> . `E12 16 `uc
+-> . `E12 17 `uc
+-> . `E12 14 `uc
+-> . `E12 7 `uc
+-> . `E12 7 `uc
+-> . `E12 9 `uc
+-> . `E12 9 `uc
+-> . `E12 17 `uc
+-> . `E12 16 `uc
+-> . `E12 14 `uc
+-> . `E12 12 `uc
+-> . `E12 12 `uc
+-> . `E12 14 `uc
+-> . `E12 16 `uc
+-> . `E12 14 `uc
+-> . `E12 9 `uc
+-> . `E12 11 `uc
+-> . `E12 7 `uc
+-> . `E12 7 `uc
+-> . `E12 9 `uc
+-> . `E12 9 `uc
+-> . `E12 17 `uc
+-> . `E12 16 `uc
+-> . `E12 14 `uc
+-> . `E12 12 `uc
+-> . `E12 19 `uc
+-> . `E12 14 `uc
+-> . `E12 14 `uc
+-> . `E12 29 `uc
+-> . `E12 7 `uc
+-> . `E12 9 `uc
+-> . `E12 9 `uc
+-> . `E12 17 `uc
+-> . `E12 16 `uc
+-> . `E12 14 `uc
+-> . `E12 12 `uc
+-> . `E12 12 `uc
+-> . `E12 14 `uc
+-> . `E12 16 `uc
+-> . `E12 14 `uc
+-> . `E12 9 `uc
+-> . `E12 11 `uc
+-> . `E12 19 `uc
+-> . `E12 19 `uc
+-> . `E12 24 `uc
+-> . `E12 22 `uc
+-> . `E12 20 `uc
+-> . `E12 19 `uc
+-> . `E12 17 `uc
+-> . `E12 15 `uc
+-> . `E12 14 `uc
+-> . `E12 12 `uc
+-> . `E12 19 `uc
+..
+]
+"65
+[; ;songs.c: 65: const unsigned char sw_duration[] = {24, 24, 24, 96, 96, 24,
+[v _sw_duration `Cuc ~T0 @X0 -> 88 `i e ]
+[i _sw_duration
+:U ..
+-> -> 24 `i `uc
+-> -> 24 `i `uc
+-> -> 24 `i `uc
+-> -> 96 `i `uc
+-> -> 96 `i `uc
+-> -> 24 `i `uc
+-> -> 24 `i `uc
+-> -> 24 `i `uc
+-> -> 96 `i `uc
+-> -> 48 `i `uc
+-> -> 24 `i `uc
+-> -> 24 `i `uc
+-> -> 24 `i `uc
+-> -> 96 `i `uc
+-> -> 48 `i `uc
+-> -> 24 `i `uc
+-> -> 24 `i `uc
+-> -> 24 `i `uc
+-> -> 96 `i `uc
+-> -> 24 `i `uc
+-> -> 24 `i `uc
+-> -> 24 `i `uc
+-> -> 96 `i `uc
+-> -> 96 `i `uc
+-> -> 24 `i `uc
+-> -> 24 `i `uc
+-> -> 24 `i `uc
+-> -> 96 `i `uc
+-> -> 48 `i `uc
+-> -> 24 `i `uc
+-> -> 24 `i `uc
+-> -> 24 `i `uc
+-> -> 96 `i `uc
+-> -> 48 `i `uc
+-> -> 24 `i `uc
+-> -> 24 `i `uc
+-> -> 24 `i `uc
+-> -> 96 `i `uc
+-> -> 36 `i `uc
+-> -> 12 `i `uc
+-> -> 72 `i `uc
+-> -> 24 `i `uc
+-> -> 24 `i `uc
+-> -> 24 `i `uc
+-> -> 24 `i `uc
+-> -> 24 `i `uc
+-> -> 24 `i `uc
+-> -> 24 `i `uc
+-> -> 24 `i `uc
+-> -> 48 `i `uc
+-> -> 24 `i `uc
+-> -> 48 `i `uc
+-> -> 36 `i `uc
+-> -> 12 `i `uc
+-> -> 72 `i `uc
+-> -> 24 `i `uc
+-> -> 24 `i `uc
+-> -> 24 `i `uc
+-> -> 24 `i `uc
+-> -> 24 `i `uc
+-> -> 36 `i `uc
+-> -> 12 `i `uc
+-> -> 96 `i `uc
+-> -> 24 `i `uc
+-> -> 24 `i `uc
+-> -> 72 `i `uc
+-> -> 24 `i `uc
+-> -> 24 `i `uc
+-> -> 24 `i `uc
+-> -> 24 `i `uc
+-> -> 24 `i `uc
+-> -> 24 `i `uc
+-> -> 24 `i `uc
+-> -> 24 `i `uc
+-> -> 48 `i `uc
+-> -> 24 `i `uc
+-> -> 48 `i `uc
+-> -> 36 `i `uc
+-> -> 12 `i `uc
+-> -> 48 `i `uc
+-> -> 24 `i `uc
+-> -> 48 `i `uc
+-> -> 24 `i `uc
+-> -> 48 `i `uc
+-> -> 24 `i `uc
+-> -> 48 `i `uc
+-> -> 24 `i `uc
+-> -> 192 `i `uc
+..
+]
+"73
+[; ;songs.c: 73: Song pacman_song = {
+[v _pacman_song `S1 ~T0 @X0 1 e ]
+[i _pacman_song
+:U ..
+:U ..
+:U ..
+-> 112 `c
+-> 97 `c
+-> 99 `c
+-> 109 `c
+-> 97 `c
+-> 110 `c
+-> 0 `c
+..
+-> &U _pacman_song_size `*uc
+-> &U _pacman_notes `*uc
+-> &U _pacman_duration `*uc
+..
+..
+]
+"80
+[; ;songs.c: 80: Song tetris_song = {
+[v _tetris_song `S1 ~T0 @X0 1 e ]
+[i _tetris_song
+:U ..
+:U ..
+:U ..
+-> 116 `c
+-> 101 `c
+-> 116 `c
+-> 114 `c
+-> 105 `c
+-> 115 `c
+-> 0 `c
+..
+-> &U _tetris_song_size `*uc
+-> &U _tetris_notes `*uc
+-> &U _tetris_duration `*uc
+..
+..
+]
+"87
+[; ;songs.c: 87: Song sw_song = {
+[v _sw_song `S1 ~T0 @X0 1 e ]
+[i _sw_song
+:U ..
+:U ..
+:U ..
+-> 115 `c
+-> 116 `c
+-> 97 `c
+-> 114 `c
+-> 32 `c
+-> 119 `c
+-> 97 `c
+-> 114 `c
+-> 115 `c
+-> 0 `c
+..
+-> &U _sw_song_size `*uc
+-> &U _sw_notes `*uc
+-> &U _sw_duration `*uc
+..
+..
+]
